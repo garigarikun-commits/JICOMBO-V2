@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#68152c">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -71,10 +71,10 @@
     }
     #viewport-bg {
       position: fixed;
-      top: -120px;
-      right: 0;
-      bottom: -120px;
-      left: 0;
+      top: -400px;
+      left: -100px;
+      right: -100px;
+      height: calc(100dvh + 800px);
       z-index: -1;
       pointer-events: none;
       background:
@@ -1597,10 +1597,9 @@
     }
 
     /* ── FOND — NeatGradient canvas (fallback CSS) ── */
-    html, body { background-color: #150010; }
+    html, body { background-color: #2d050b; }
     #viewport-bg {
-      background: linear-gradient(175deg, #3d0c1a 0%, #2d050b 38%, #250012 65%, #150010 100%);
-      overflow: hidden;
+      background: linear-gradient(175deg, #3d0c1a 0%, #2d050b 38%, #250012 65%, #2d050b 100%);
     }
     #neatGradient {
       position: absolute;
