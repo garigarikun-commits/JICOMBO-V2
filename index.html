@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#68152c">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -1597,11 +1597,7 @@
     }
 
     /* ── FOND — NeatGradient canvas (fallback CSS) ── */
-    html {
-      background: linear-gradient(175deg, #3d0c1a 0%, #2d050b 38%, #250012 65%, #150010 100%);
-      background-attachment: fixed;
-    }
-    body { background-color: transparent; }
+    html, body { background-color: #150010; }
     #viewport-bg {
       background: linear-gradient(175deg, #3d0c1a 0%, #2d050b 38%, #250012 65%, #150010 100%);
       overflow: hidden;
@@ -5653,7 +5649,7 @@
           colorSaturation: -1,
           wireframe: false,
           colorBlending: 8,
-          backgroundColor: "#150010",
+          backgroundColor: "#010101",
           backgroundAlpha: 1,
           grainScale: 2,
           grainSparsity: 0,
