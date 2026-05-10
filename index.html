@@ -1677,7 +1677,7 @@
     }
 
     /* ══════════════════════════════════════════
-       BOUTONS — 3D ARCADE PHYSIQUE
+       BOUTONS — LIQUID GLASS
     ══════════════════════════════════════════ */
 
     .actions .btn {
@@ -1685,7 +1685,6 @@
       width: 212px; height: 52px;
       padding: 0 20px;
       border-radius: 16px;
-      border: none;
       font-family: "Poppins", sans-serif;
       font-weight: 800;
       font-size: .95rem;
@@ -1694,121 +1693,122 @@
       transform: translateY(0);
       transition: var(--pa-trans-btn);
       overflow: hidden;
+      /* Liquid glass fondation */
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid rgba(255,255,255,.16);
+      color: rgba(255,235,210,.92);
+      box-shadow:
+        0 2px 0 rgba(0,0,0,.14),
+        0 4px 18px rgba(0,0,0,.08),
+        inset 0 1px 0 rgba(255,255,255,.22),
+        inset 0 0 0 .5px rgba(255,255,255,.06);
     }
-    /* Shimmer sweep on hover */
+    .actions .btn:hover, .actions .btn:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.22);
+      box-shadow:
+        0 4px 0 rgba(0,0,0,.16),
+        0 8px 28px rgba(0,0,0,.12),
+        inset 0 1px 0 rgba(255,255,255,.28),
+        inset 0 0 0 .5px rgba(255,255,255,.08);
+    }
+    .actions .btn:active, .actions .btn.is-pressed {
+      transform: translateY(2px);
+      box-shadow:
+        0 0px 0 rgba(0,0,0,.10),
+        0 2px 8px rgba(0,0,0,.10),
+        inset 0 1px 3px rgba(0,0,0,.14),
+        inset 0 0 0 .5px rgba(255,255,255,.04);
+    }
+    /* Shimmer sweep */
     .actions .btn::after {
       content: "";
       position: absolute;
       top: 0; left: -130%;
       width: 72%; height: 100%;
-      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.22) 50%, transparent 100%);
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.16) 50%, transparent 100%);
       transform: skewX(-18deg);
       transition: left .52s cubic-bezier(.2,.8,.2,1);
       pointer-events: none;
     }
     .actions .btn:hover::after,
     .actions .btn:focus-visible::after { left: 145%; }
-    /* Top gloss */
+    /* Glass inner shimmer */
     .actions .btn::before {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      background: linear-gradient(180deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,0) 46%);
+      background: linear-gradient(135deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.02) 55%, transparent 100%);
       pointer-events: none;
     }
 
-    /* ── JOUER — glassmorphism or ── */
+    /* ── JOUER — verre ambré ── */
     #playBtn {
-      color: #ffedb0;
-      background: rgba(160, 80, 0, 0.22);
-      backdrop-filter: blur(22px) saturate(200%);
-      -webkit-backdrop-filter: blur(22px) saturate(200%);
-      border: 1px solid rgba(255, 200, 55, 0.32);
-      box-shadow:
-        0 5px 0 rgba(0,0,0,.46),
-        0 12px 36px rgba(140,70,0,.32),
-        inset 0 1px 0 rgba(255,220,90,.44),
-        inset 0 -1px 0 rgba(255,150,10,.10);
+      background: rgba(220, 150, 10, 0.10);
+      border-color: rgba(255, 200, 60, 0.22);
+      color: #ffe4a0;
       animation: paPlayPulse 4s ease-in-out infinite;
     }
     #playBtn::before {
-      background: linear-gradient(135deg, rgba(255,220,90,.24) 0%, rgba(255,180,20,.04) 100%);
+      background: linear-gradient(135deg, rgba(255,220,90,.14) 0%, rgba(255,180,20,.02) 100%);
     }
     @keyframes paPlayPulse {
       0%, 100% {
-        box-shadow: 0 5px 0 rgba(0,0,0,.46), 0 12px 34px rgba(140,70,0,.32), 0 0 0 0px rgba(255,196,22,0), inset 0 1px 0 rgba(255,220,90,.44);
+        box-shadow: 0 2px 0 rgba(0,0,0,.14), 0 4px 18px rgba(0,0,0,.08), 0 0 0 0px rgba(255,196,22,0), inset 0 1px 0 rgba(255,255,255,.22);
       }
       50% {
-        box-shadow: 0 5px 0 rgba(0,0,0,.46), 0 18px 42px rgba(140,70,0,.44), 0 0 0 8px rgba(255,196,22,.10), inset 0 1px 0 rgba(255,220,90,.52);
+        box-shadow: 0 2px 0 rgba(0,0,0,.14), 0 8px 24px rgba(200,140,10,.12), 0 0 0 5px rgba(255,196,22,.06), inset 0 1px 0 rgba(255,255,255,.26);
       }
     }
-    /* Override base "animation: none" on home active */
     #home.active #playBtn { animation: paPlayPulse 4s ease-in-out infinite; }
     #playBtn:hover, #playBtn:focus-visible {
-      transform: translateY(-3px);
       animation: none;
-      background: rgba(180, 96, 0, 0.30);
-      border-color: rgba(255, 210, 70, 0.44);
-      box-shadow: 0 8px 0 rgba(0,0,0,.46), 0 22px 46px rgba(140,70,0,.44), 0 0 0 7px rgba(255,196,22,.12), inset 0 1px 0 rgba(255,220,90,.52);
+      background: rgba(220, 150, 10, 0.15);
+      border-color: rgba(255, 210, 70, 0.30);
     }
     #playBtn:active, #playBtn.is-pressed {
-      transform: translateY(5px);
       animation: none;
-      background: rgba(120, 55, 0, 0.28);
-      border-color: rgba(255, 190, 40, 0.22);
-      box-shadow: 0 0px 0 rgba(0,0,0,.44), 0 4px 12px rgba(0,0,0,.28), inset 0 2px 5px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,210,80,.20);
+      background: rgba(180, 110, 0, 0.12);
+      border-color: rgba(255, 190, 40, 0.18);
     }
 
-    /* ── SECONDAIRES — glassmorphism ── */
-    .actions .btn.secondary {
-      color: rgba(255,228,210,.96);
-      background: rgba(120, 30, 60, 0.16);
-      backdrop-filter: blur(20px) saturate(200%);
-      -webkit-backdrop-filter: blur(20px) saturate(200%);
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      box-shadow:
-        0 5px 0 rgba(0,0,0,.44),
-        0 10px 28px rgba(0,0,0,.28),
-        inset 0 1px 0 rgba(255,255,255,.42),
-        inset 0 -1px 0 rgba(255,255,255,.06);
-    }
-    .actions .btn.secondary::before {
-      background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.02) 100%);
-    }
-    .actions .btn.secondary:hover, .actions .btn.secondary:focus-visible {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.38);
-      color: rgba(255,238,222,.98);
-      background: rgba(145, 40, 75, 0.22);
-      backdrop-filter: blur(24px) saturate(220%);
-      -webkit-backdrop-filter: blur(24px) saturate(220%);
-      box-shadow: 0 7px 0 rgba(0,0,0,.46), 0 14px 36px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.48);
-    }
-    .actions .btn.secondary:active, .actions .btn.secondary.is-pressed {
-      transform: translateY(5px);
-      background: rgba(90, 18, 38, 0.24);
-      border-color: rgba(255, 255, 255, 0.18);
-      box-shadow: 0 0px 0 rgba(0,0,0,.36), 0 3px 10px rgba(0,0,0,.28), inset 0 2px 4px rgba(0,0,0,.22);
-    }
-
-    /* ── DLC — glass doré ── */
+    /* ── DLC 🎂 — verre rose ── */
     #dlcBtn {
-      color: #fff5c2;
-      background: rgba(140, 65, 0, 0.18);
-      border: 1px solid rgba(255, 195, 50, 0.32);
-      backdrop-filter: blur(20px) saturate(200%);
-      -webkit-backdrop-filter: blur(20px) saturate(200%);
-      box-shadow: 0 5px 0 rgba(0,0,0,.44), 0 10px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,220,90,.36);
+      background: rgba(212, 60, 130, 0.09);
+      border-color: rgba(255, 155, 195, 0.20);
+      color: #ffcce8;
     }
     #dlcBtn::before {
-      background: linear-gradient(135deg, rgba(255,220,90,.20) 0%, rgba(255,180,20,.03) 100%);
+      background: linear-gradient(135deg, rgba(255,160,210,.12) 0%, rgba(210,80,160,.02) 100%);
     }
     #dlcBtn .btn-badge {
       background: linear-gradient(135deg, #fff4b2 0%, #ffca36 55%, #ff7c26 100%);
       color: #3a1800;
       font-weight: 900;
-      box-shadow: 0 4px 12px rgba(180,78,0,.42);
+      box-shadow: 0 2px 8px rgba(180,78,0,.28);
+    }
+
+    /* ── SPEEDRUN — verre corail ── */
+    #speedBtn {
+      background: rgba(242, 70, 80, 0.09);
+      border-color: rgba(255, 135, 130, 0.20);
+      color: #ffc0c4;
+    }
+    #speedBtn::before {
+      background: linear-gradient(135deg, rgba(255,140,140,.12) 0%, rgba(220,60,80,.02) 100%);
+    }
+
+    /* ── CHEAT CODE — verre violet ── */
+    #cheatBtn {
+      background: rgba(130, 40, 180, 0.08);
+      border-color: rgba(195, 140, 255, 0.18);
+      color: #e0c8ff;
+    }
+    #cheatBtn::before {
+      background: linear-gradient(135deg, rgba(200,140,255,.12) 0%, rgba(130,40,180,.02) 100%);
     }
 
     /* ══════════════════════════════════════════
