@@ -1597,29 +1597,32 @@
       --pa-trans-btn: transform .08s cubic-bezier(.22,.8,.22,1), box-shadow .08s ease;
     }
 
-    /* ── FOND — dégradé tropical vivant ── */
-    html, body { background-color: #1c0038; }
+    /* ── FOND — tropical animated flow premium ── */
+    html, body { background-color: #1a0028; }
     #viewport-bg {
-      background:
-        linear-gradient(
-          168deg,
-          #3a0062 0%,
-          #7e1a58 16%,
-          #c22858 30%,
-          #7e1a58 46%,
-          #3c0064 64%,
-          #200040 82%,
-          #130028 100%
-        );
-      animation: paAtmo 28s ease-in-out infinite;
+      background: linear-gradient(
+        -45deg,
+        #3c0818,
+        #8c1048,
+        #c82068,
+        #e03858,
+        #a81838,
+        #c85020,
+        #7c1848,
+        #3c0818
+      );
+      background-size: 400% 400%;
+      animation: tropicalFlow 14s ease infinite;
     }
-    @keyframes paAtmo {
-      0%, 100% { filter: saturate(1)    brightness(1);    }
-      40%       { filter: saturate(1.14) brightness(1.06); }
-      70%       { filter: saturate(1.07) brightness(1.03); }
+    @keyframes tropicalFlow {
+      0%   { background-position: 0%   50%; }
+      25%  { background-position: 50%  0%; }
+      50%  { background-position: 100% 50%; }
+      75%  { background-position: 50%  100%; }
+      100% { background-position: 0%   50%; }
     }
 
-    /* ── ORBES AURORA — halo atmosphérique discret ── */
+    /* ── ORBS — halos dorés & roses discrets ── */
     .aurora-orb {
       position: fixed;
       border-radius: 50%;
@@ -1628,37 +1631,37 @@
       mix-blend-mode: screen;
     }
     .aurora-orb.orb-a {
-      top: -22vh; left: -22vw;
-      width: min(84vw, 660px); height: min(84vw, 660px);
-      background: radial-gradient(circle, rgba(255,180,30,1) 0%, rgba(255,100,30,.4) 40%, transparent 70%);
-      filter: blur(120px); opacity: .09;
-      animation: paOrbA 24s ease-in-out infinite;
+      top: -18vh; left: -18vw;
+      width: min(80vw, 640px); height: min(80vw, 640px);
+      background: radial-gradient(circle, rgba(255,215,60,1) 0%, rgba(255,145,30,.35) 44%, transparent 70%);
+      filter: blur(90px); opacity: .18;
+      animation: paOrbA 22s ease-in-out infinite;
     }
     .aurora-orb.orb-b {
-      top: 4vh; right: -26vw;
-      width: min(84vw, 680px); height: min(84vw, 680px);
-      background: radial-gradient(circle, rgba(235,55,100,1) 0%, rgba(200,50,130,.4) 40%, transparent 70%);
-      filter: blur(130px); opacity: .10;
+      top: 6vh; right: -22vw;
+      width: min(82vw, 660px); height: min(82vw, 660px);
+      background: radial-gradient(circle, rgba(255,80,135,1) 0%, rgba(215,40,115,.35) 44%, transparent 70%);
+      filter: blur(100px); opacity: .16;
       animation: paOrbB 28s ease-in-out infinite;
     }
     .aurora-orb.orb-c {
-      bottom: -30vh; left: -20vw;
-      width: min(90vw, 740px); height: min(90vw, 740px);
-      background: radial-gradient(circle, rgba(140,28,84,1) 0%, rgba(80,16,56,.4) 42%, transparent 70%);
-      filter: blur(140px); opacity: .08;
+      bottom: -25vh; left: -15vw;
+      width: min(86vw, 700px); height: min(86vw, 700px);
+      background: radial-gradient(circle, rgba(175,28,80,1) 0%, rgba(90,12,48,.35) 44%, transparent 70%);
+      filter: blur(120px); opacity: .13;
       animation: paOrbC 34s ease-in-out infinite;
     }
     .aurora-orb.orb-d {
-      bottom: -12vh; right: -18vw;
-      width: min(66vw, 520px); height: min(66vw, 520px);
-      background: radial-gradient(circle, rgba(255,120,50,1) 0%, rgba(255,70,40,.4) 40%, transparent 68%);
-      filter: blur(110px); opacity: .08;
-      animation: paOrbD 32s ease-in-out infinite;
+      bottom: -10vh; right: -16vw;
+      width: min(64vw, 520px); height: min(64vw, 520px);
+      background: radial-gradient(circle, rgba(255,155,50,1) 0%, rgba(215,80,20,.35) 42%, transparent 68%);
+      filter: blur(88px); opacity: .16;
+      animation: paOrbD 30s ease-in-out infinite;
     }
-    @keyframes paOrbA { 0%,100%{transform:translate(0,0) scale(1);}  50%{transform:translate(10vw,8vh) scale(1.14);} }
-    @keyframes paOrbB { 0%,100%{transform:translate(0,0) scale(1);}  50%{transform:translate(-12vw,5vh) scale(1.18);} }
-    @keyframes paOrbC { 0%,100%{transform:translate(0,0) scale(1);}  50%{transform:translate(8vw,-9vh) scale(1.10);} }
-    @keyframes paOrbD { 0%,100%{transform:translate(0,0) scale(1);}  50%{transform:translate(-5vw,-8vh) scale(1.16);} }
+    @keyframes paOrbA { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(9vw,7vh) scale(1.13);} }
+    @keyframes paOrbB { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-11vw,5vh) scale(1.17);} }
+    @keyframes paOrbC { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(7vw,-8vh) scale(1.11);} }
+    @keyframes paOrbD { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-5vw,-7vh) scale(1.15);} }
 
     /* ── SPLASH SCREEN — logo + barre premium ── */
     .launch-splash {
@@ -2049,7 +2052,7 @@
     @media (prefers-reduced-motion: reduce) {
       #homeLogo, .game-logo, #cheatLogo { animation: none; }
       #playBtn, #home.active #playBtn   { animation: none; }
-      .aurora-orb, #viewport-bg         { animation: none; }
+      .aurora-orb, #viewport-bg         { animation: none; background-position: 0% 50%; }
       .heart.live                        { animation: none; }
       .answer-form.ready .validate-btn   { animation: none; }
     }
