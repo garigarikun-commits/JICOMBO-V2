@@ -1597,63 +1597,68 @@
       --pa-trans-btn: transform .08s cubic-bezier(.22,.8,.22,1), box-shadow .08s ease;
     }
 
-    /* ── FOND — mesh gradient tropical vivant ── */
-    html, body { background-color: #1a0020; }
+    /* ── FOND — dégradé tropical vivant ── */
+    html, body { background-color: #1c0038; }
     #viewport-bg {
       background:
-        radial-gradient(ellipse 880px 540px at 18% 6%,  rgba(255,196,22,.30) 0%, rgba(255,110,36,.16) 38%, transparent 64%),
-        radial-gradient(ellipse 760px 620px at 84% 10%, rgba(242,70,97,.36)  0%, rgba(210,57,127,.20) 40%, transparent 66%),
-        radial-gradient(ellipse 640px 480px at 60% 55%, rgba(210,57,127,.22) 0%, rgba(109,31,79,.28)  46%, transparent 72%),
-        radial-gradient(ellipse 900px 800px at 50% 100%,rgba(85,18,45,.74)   0%, rgba(26,2,20,.88)   52%, transparent 82%),
-        linear-gradient(162deg, #2e0830 0%, #1c0022 28%, #240020 58%, #18002a 80%, #120018 100%);
+        linear-gradient(
+          168deg,
+          #3a0062 0%,
+          #7e1a58 16%,
+          #c22858 30%,
+          #7e1a58 46%,
+          #3c0064 64%,
+          #200040 82%,
+          #130028 100%
+        );
       animation: paAtmo 28s ease-in-out infinite;
     }
     @keyframes paAtmo {
       0%, 100% { filter: saturate(1)    brightness(1);    }
-      38%       { filter: saturate(1.12) brightness(1.05); }
-      72%       { filter: saturate(1.06) brightness(1.02); }
+      40%       { filter: saturate(1.14) brightness(1.06); }
+      70%       { filter: saturate(1.07) brightness(1.03); }
     }
 
-    /* ── ORBES AURORA — tropical warm ── */
+    /* ── ORBES AURORA — halo atmosphérique discret ── */
     .aurora-orb {
       position: fixed;
       border-radius: 50%;
       pointer-events: none;
-      will-change: transform, opacity;
+      will-change: transform;
       mix-blend-mode: screen;
     }
     .aurora-orb.orb-a {
-      top: -14vh; left: -16vw;
-      width: min(70vw, 580px); height: min(70vw, 580px);
-      background: radial-gradient(circle, rgba(255,196,22,.88) 0%, rgba(255,112,36,.38) 38%, transparent 68%);
-      filter: blur(60px); opacity: .50;
-      animation: paOrbA 22s ease-in-out infinite;
+      top: -22vh; left: -22vw;
+      width: min(84vw, 660px); height: min(84vw, 660px);
+      background: radial-gradient(circle, rgba(255,180,30,1) 0%, rgba(255,100,30,.4) 40%, transparent 70%);
+      filter: blur(120px); opacity: .09;
+      animation: paOrbA 24s ease-in-out infinite;
     }
     .aurora-orb.orb-b {
-      top: 8vh; right: -20vw;
-      width: min(76vw, 640px); height: min(76vw, 640px);
-      background: radial-gradient(circle, rgba(242,70,97,.90) 0%, rgba(210,57,127,.38) 40%, transparent 70%);
-      filter: blur(66px); opacity: .44;
-      animation: paOrbB 26s ease-in-out infinite;
+      top: 4vh; right: -26vw;
+      width: min(84vw, 680px); height: min(84vw, 680px);
+      background: radial-gradient(circle, rgba(235,55,100,1) 0%, rgba(200,50,130,.4) 40%, transparent 70%);
+      filter: blur(130px); opacity: .10;
+      animation: paOrbB 28s ease-in-out infinite;
     }
     .aurora-orb.orb-c {
-      bottom: -24vh; left: -14vw;
-      width: min(84vw, 700px); height: min(84vw, 700px);
-      background: radial-gradient(circle, rgba(140,30,82,.80) 0%, rgba(88,18,58,.34) 42%, transparent 70%);
-      filter: blur(76px); opacity: .36;
-      animation: paOrbC 32s ease-in-out infinite;
+      bottom: -30vh; left: -20vw;
+      width: min(90vw, 740px); height: min(90vw, 740px);
+      background: radial-gradient(circle, rgba(140,28,84,1) 0%, rgba(80,16,56,.4) 42%, transparent 70%);
+      filter: blur(140px); opacity: .08;
+      animation: paOrbC 34s ease-in-out infinite;
     }
     .aurora-orb.orb-d {
-      bottom: -8vh; right: -12vw;
-      width: min(58vw, 480px); height: min(58vw, 480px);
-      background: radial-gradient(circle, rgba(255,126,54,.76) 0%, rgba(255,80,48,.22) 40%, transparent 68%);
-      filter: blur(52px); opacity: .32;
-      animation: paOrbD 30s ease-in-out infinite;
+      bottom: -12vh; right: -18vw;
+      width: min(66vw, 520px); height: min(66vw, 520px);
+      background: radial-gradient(circle, rgba(255,120,50,1) 0%, rgba(255,70,40,.4) 40%, transparent 68%);
+      filter: blur(110px); opacity: .08;
+      animation: paOrbD 32s ease-in-out infinite;
     }
-    @keyframes paOrbA { 0%,100%{transform:translate(0,0) scale(1);}       50%{transform:translate(11vw,9vh) scale(1.16);} }
-    @keyframes paOrbB { 0%,100%{transform:translate(0,0) scale(1); opacity:.44;} 50%{transform:translate(-13vw,6vh) scale(1.20); opacity:.58;} }
-    @keyframes paOrbC { 0%,100%{transform:translate(0,0) scale(1);}       50%{transform:translate(9vw,-10vh) scale(1.12);} }
-    @keyframes paOrbD { 0%,100%{transform:translate(0,0) scale(1); opacity:.32;} 50%{transform:translate(-6vw,-9vh) scale(1.18); opacity:.44;} }
+    @keyframes paOrbA { 0%,100%{transform:translate(0,0) scale(1);}  50%{transform:translate(10vw,8vh) scale(1.14);} }
+    @keyframes paOrbB { 0%,100%{transform:translate(0,0) scale(1);}  50%{transform:translate(-12vw,5vh) scale(1.18);} }
+    @keyframes paOrbC { 0%,100%{transform:translate(0,0) scale(1);}  50%{transform:translate(8vw,-9vh) scale(1.10);} }
+    @keyframes paOrbD { 0%,100%{transform:translate(0,0) scale(1);}  50%{transform:translate(-5vw,-8vh) scale(1.16);} }
 
     /* ── SPLASH SCREEN — logo + barre premium ── */
     .launch-splash {
@@ -1793,30 +1798,30 @@
       box-shadow: 0 0px 0 var(--pa-gold-floor), 0 4px 12px rgba(0,0,0,.28), inset 0 2px 5px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.28);
     }
 
-    /* ── SECONDAIRES — ghost profond ── */
+    /* ── SECONDAIRES — plum glass solide ── */
     .actions .btn.secondary {
-      color: rgba(255,234,172,.92);
-      background: rgba(255,184,5,.03);
-      border: 1.5px solid rgba(254,184,5,.28);
+      color: #ffecd8;
+      background: linear-gradient(158deg, rgba(108,22,64,.82) 0%, rgba(52,8,36,.90) 100%);
+      border: 1.5px solid rgba(220,110,160,.28);
       box-shadow:
-        0 4px 0 rgba(130,68,0,.30),
-        0 9px 24px rgba(0,0,0,.28),
-        inset 0 1px 0 rgba(255,255,255,.07);
+        0 5px 0 rgba(14,0,12,.65),
+        0 10px 26px rgba(0,0,0,.38),
+        inset 0 1px 0 rgba(255,190,170,.10);
     }
     .actions .btn.secondary::before {
-      background: linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,0) 52%);
+      background: linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,0) 50%);
     }
     .actions .btn.secondary:hover, .actions .btn.secondary:focus-visible {
       transform: translateY(-2px);
-      border-color: rgba(254,184,5,.54);
-      color: #fff5c6;
-      background: rgba(254,184,5,.06);
-      box-shadow: 0 6px 0 rgba(130,68,0,.36), 0 14px 32px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.10);
+      border-color: rgba(240,130,175,.50);
+      color: #fff0e0;
+      background: linear-gradient(158deg, rgba(130,28,78,.88) 0%, rgba(60,10,44,.92) 100%);
+      box-shadow: 0 7px 0 rgba(14,0,12,.68), 0 14px 34px rgba(0,0,0,.44), inset 0 1px 0 rgba(255,190,170,.14);
     }
     .actions .btn.secondary:active, .actions .btn.secondary.is-pressed {
-      transform: translateY(4px);
-      box-shadow: 0 0px 0 rgba(130,68,0,.24), 0 3px 9px rgba(0,0,0,.20), inset 0 2px 4px rgba(0,0,0,.18);
-      background: rgba(0,0,0,.14);
+      transform: translateY(5px);
+      box-shadow: 0 0px 0 rgba(14,0,12,.54), 0 3px 10px rgba(0,0,0,.30), inset 0 2px 4px rgba(0,0,0,.28);
+      background: linear-gradient(158deg, rgba(80,14,50,.90) 0%, rgba(38,6,28,.94) 100%);
     }
 
     /* ── DLC ── */
