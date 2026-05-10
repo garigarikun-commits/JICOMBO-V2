@@ -1597,7 +1597,11 @@
     }
 
     /* ── FOND — NeatGradient canvas (fallback CSS) ── */
-    html, body { background-color: #150010; }
+    html {
+      background: linear-gradient(175deg, #3d0c1a 0%, #2d050b 38%, #250012 65%, #150010 100%);
+      background-attachment: fixed;
+    }
+    body { background-color: transparent; }
     #viewport-bg {
       background: linear-gradient(175deg, #3d0c1a 0%, #2d050b 38%, #250012 65%, #150010 100%);
       overflow: hidden;
@@ -5649,7 +5653,7 @@
           colorSaturation: -1,
           wireframe: false,
           colorBlending: 8,
-          backgroundColor: "#010101",
+          backgroundColor: "#150010",
           backgroundAlpha: 1,
           grainScale: 2,
           grainSparsity: 0,
