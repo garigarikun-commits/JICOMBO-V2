@@ -1,18 +1,25 @@
 {
   "name": "Jicombo",
   "short_name": "Jicombo",
-  "description": "Spin-off non officiel de Comboji : devine le mot ? partir des emojis.",
-  "start_url": "./index.html?v=29",
+  "description": "Spin-off non officiel de Comboji : devine le mot à partir des emojis.",
+  "start_url": "./index.html?v=100",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#68152c",
-  "theme_color": "#68152c",
+  "background_color": "#1c0022",
+  "theme_color": "#1c0022",
   "icons": [
     {
-      "src": "Jicombo-icon.png?v=29",
+      "src": "Jicombo-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "Jicombo-icon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
