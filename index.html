@@ -1597,79 +1597,18 @@
       --pa-trans-btn: transform .08s cubic-bezier(.22,.8,.22,1), box-shadow .08s ease;
     }
 
-    /* ── FOND — NEAT mesh gradient · palette JICOMBO ── */
+    /* ── FOND — NeatGradient canvas (fallback CSS) ── */
     html, body { background-color: #150010; }
     #viewport-bg {
-      background: #150010;
+      background: linear-gradient(175deg, #3d0c1a 0%, #2d050b 38%, #250012 65%, #150010 100%);
       overflow: hidden;
     }
-
-    /* ── ORBS — blobs de couleur NEAT-style ── */
-    .aurora-orb {
+    #neatGradient {
       position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      will-change: transform;
-    }
-    /* Crimson profond — haut gauche */
-    .aurora-orb.orb-a {
-      width: clamp(560px, 160vw, 840px);
-      height: clamp(560px, 160vw, 840px);
-      top: -200px; left: -170px;
-      background: #68152c;
-      filter: blur(74px);
-      opacity: .86;
-      animation: meshA 36s ease-in-out infinite;
-    }
-    /* Prune profonde — haut droit */
-    .aurora-orb.orb-b {
-      width: clamp(520px, 148vw, 800px);
-      height: clamp(520px, 148vw, 800px);
-      top: -160px; right: -170px;
-      background: #6d1f4f;
-      filter: blur(68px);
-      opacity: .82;
-      animation: meshB 42s ease-in-out infinite;
-    }
-    /* Rose ardent — bas gauche */
-    .aurora-orb.orb-c {
-      width: clamp(580px, 168vw, 860px);
-      height: clamp(580px, 168vw, 860px);
-      bottom: -220px; left: -150px;
-      background: #ab1a33;
-      filter: blur(80px);
-      opacity: .80;
-      animation: meshC 30s ease-in-out infinite;
-    }
-    /* Magenta chaud — bas droit */
-    .aurora-orb.orb-d {
-      width: clamp(460px, 130vw, 720px);
-      height: clamp(460px, 130vw, 720px);
-      bottom: -180px; right: -150px;
-      background: #d2397f;
-      filter: blur(64px);
-      opacity: .62;
-      animation: meshD 38s ease-in-out infinite;
-    }
-    @keyframes meshA {
-      0%, 100% { transform: translate(0, 0); }
-      33%       { transform: translate(7vw, 10vh); }
-      66%       { transform: translate(-4vw, 5vh); }
-    }
-    @keyframes meshB {
-      0%, 100% { transform: translate(0, 0); }
-      33%       { transform: translate(-9vw, 7vh); }
-      66%       { transform: translate(5vw, -5vh); }
-    }
-    @keyframes meshC {
-      0%, 100% { transform: translate(0, 0); }
-      33%       { transform: translate(10vw, -9vh); }
-      66%       { transform: translate(3vw, 8vh); }
-    }
-    @keyframes meshD {
-      0%, 100% { transform: translate(0, 0); }
-      33%       { transform: translate(-8vw, -11vh); }
-      66%       { transform: translate(-14vw, 5vh); }
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
     }
 
     /* ── SPLASH SCREEN — logo + barre premium ── */
@@ -1779,22 +1718,29 @@
       pointer-events: none;
     }
 
-    /* ── JOUER ── */
+    /* ── JOUER — glassmorphism or ── */
     #playBtn {
-      color: #281000;
-      background: linear-gradient(138deg, #fff090 0%, #ffcc1e 20%, #ffa424 54%, #ff6828 100%);
+      color: #ffedb0;
+      background: rgba(160, 80, 0, 0.22);
+      backdrop-filter: blur(22px) saturate(200%);
+      -webkit-backdrop-filter: blur(22px) saturate(200%);
+      border: 1px solid rgba(255, 200, 55, 0.32);
       box-shadow:
-        0 5px 0 var(--pa-gold-floor),
-        0 12px 34px rgba(255,138,40,.44),
-        inset 0 1.5px 0 rgba(255,255,255,.54);
+        0 5px 0 rgba(0,0,0,.46),
+        0 12px 36px rgba(140,70,0,.32),
+        inset 0 1px 0 rgba(255,220,90,.44),
+        inset 0 -1px 0 rgba(255,150,10,.10);
       animation: paPlayPulse 4s ease-in-out infinite;
+    }
+    #playBtn::before {
+      background: linear-gradient(135deg, rgba(255,220,90,.24) 0%, rgba(255,180,20,.04) 100%);
     }
     @keyframes paPlayPulse {
       0%, 100% {
-        box-shadow: 0 5px 0 var(--pa-gold-floor), 0 12px 34px rgba(255,138,40,.44), 0 0 0 0px rgba(255,196,22,0), inset 0 1.5px 0 rgba(255,255,255,.54);
+        box-shadow: 0 5px 0 rgba(0,0,0,.46), 0 12px 34px rgba(140,70,0,.32), 0 0 0 0px rgba(255,196,22,0), inset 0 1px 0 rgba(255,220,90,.44);
       }
       50% {
-        box-shadow: 0 5px 0 var(--pa-gold-floor), 0 18px 42px rgba(255,138,40,.58), 0 0 0 8px rgba(255,196,22,.12), inset 0 1.5px 0 rgba(255,255,255,.58);
+        box-shadow: 0 5px 0 rgba(0,0,0,.46), 0 18px 42px rgba(140,70,0,.44), 0 0 0 8px rgba(255,196,22,.10), inset 0 1px 0 rgba(255,220,90,.52);
       }
     }
     /* Override base "animation: none" on home active */
@@ -1802,51 +1748,61 @@
     #playBtn:hover, #playBtn:focus-visible {
       transform: translateY(-3px);
       animation: none;
-      box-shadow: 0 8px 0 var(--pa-gold-floor), 0 22px 46px rgba(255,138,40,.58), 0 0 0 7px rgba(255,196,22,.16), inset 0 1.5px 0 rgba(255,255,255,.60);
+      background: rgba(180, 96, 0, 0.30);
+      border-color: rgba(255, 210, 70, 0.44);
+      box-shadow: 0 8px 0 rgba(0,0,0,.46), 0 22px 46px rgba(140,70,0,.44), 0 0 0 7px rgba(255,196,22,.12), inset 0 1px 0 rgba(255,220,90,.52);
     }
     #playBtn:active, #playBtn.is-pressed {
       transform: translateY(5px);
       animation: none;
-      box-shadow: 0 0px 0 var(--pa-gold-floor), 0 4px 12px rgba(0,0,0,.28), inset 0 2px 5px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.28);
+      background: rgba(120, 55, 0, 0.28);
+      border-color: rgba(255, 190, 40, 0.22);
+      box-shadow: 0 0px 0 rgba(0,0,0,.44), 0 4px 12px rgba(0,0,0,.28), inset 0 2px 5px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,210,80,.20);
     }
 
-    /* ── SECONDAIRES — glassmorphism tropical ── */
+    /* ── SECONDAIRES — glassmorphism ── */
     .actions .btn.secondary {
-      color: rgba(255,228,210,.92);
-      background: rgba(104,21,44,.16);
-      border: 1px solid rgba(255,255,255,.09);
-      backdrop-filter: blur(18px) saturate(160%);
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      color: rgba(255,228,210,.96);
+      background: rgba(120, 30, 60, 0.16);
+      backdrop-filter: blur(20px) saturate(200%);
+      -webkit-backdrop-filter: blur(20px) saturate(200%);
+      border: 1px solid rgba(255, 255, 255, 0.28);
       box-shadow:
         0 5px 0 rgba(0,0,0,.44),
         0 10px 28px rgba(0,0,0,.28),
-        inset 0 1px 0 rgba(255,255,255,.10),
-        inset 0 0 0 .5px rgba(255,255,255,.05);
+        inset 0 1px 0 rgba(255,255,255,.42),
+        inset 0 -1px 0 rgba(255,255,255,.06);
     }
     .actions .btn.secondary::before {
-      background: linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 52%);
+      background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.02) 100%);
     }
     .actions .btn.secondary:hover, .actions .btn.secondary:focus-visible {
       transform: translateY(-2px);
-      border-color: rgba(255,255,255,.16);
-      color: rgba(255,238,222,.96);
-      background: rgba(130,28,58,.22);
-      box-shadow: 0 7px 0 rgba(0,0,0,.46), 0 14px 36px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.14);
+      border-color: rgba(255, 255, 255, 0.38);
+      color: rgba(255,238,222,.98);
+      background: rgba(145, 40, 75, 0.22);
+      backdrop-filter: blur(24px) saturate(220%);
+      -webkit-backdrop-filter: blur(24px) saturate(220%);
+      box-shadow: 0 7px 0 rgba(0,0,0,.46), 0 14px 36px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.48);
     }
     .actions .btn.secondary:active, .actions .btn.secondary.is-pressed {
       transform: translateY(5px);
+      background: rgba(90, 18, 38, 0.24);
+      border-color: rgba(255, 255, 255, 0.18);
       box-shadow: 0 0px 0 rgba(0,0,0,.36), 0 3px 10px rgba(0,0,0,.28), inset 0 2px 4px rgba(0,0,0,.22);
-      background: rgba(75,10,28,.26);
     }
 
     /* ── DLC — glass doré ── */
     #dlcBtn {
       color: #fff5c2;
-      background: rgba(160,72,0,.14);
-      border: 1px solid rgba(254,184,5,.22);
-      backdrop-filter: blur(18px) saturate(160%);
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
-      box-shadow: 0 5px 0 rgba(0,0,0,.44), 0 10px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.10);
+      background: rgba(140, 65, 0, 0.18);
+      border: 1px solid rgba(255, 195, 50, 0.32);
+      backdrop-filter: blur(20px) saturate(200%);
+      -webkit-backdrop-filter: blur(20px) saturate(200%);
+      box-shadow: 0 5px 0 rgba(0,0,0,.44), 0 10px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,220,90,.36);
+    }
+    #dlcBtn::before {
+      background: linear-gradient(135deg, rgba(255,220,90,.20) 0%, rgba(255,180,20,.03) 100%);
     }
     #dlcBtn .btn-badge {
       background: linear-gradient(135deg, #fff4b2 0%, #ffca36 55%, #ff7c26 100%);
@@ -2104,10 +2060,7 @@
     </div>
   </div>
   <div id="viewport-bg" aria-hidden="true">
-    <span class="aurora-orb orb-a"></span>
-    <span class="aurora-orb orb-b"></span>
-    <span class="aurora-orb orb-c"></span>
-    <span class="aurora-orb orb-d"></span>
+    <canvas id="neatGradient"></canvas>
   </div>
   <div class="app">
   <main id="home" class="screen active" aria-label="Accueil Jicombo">
@@ -2119,7 +2072,7 @@
     </div>
     <div class="actions">
       <button class="btn" id="playBtn" type="button"><span class="btn-label">Jouer</span></button>
-      <button class="btn secondary" id="dlcBtn" type="button"><span class="btn-label">Birthday Cake</span><span class="btn-badge">New</span></button>
+      <button class="btn secondary" id="dlcBtn" type="button"><span class="btn-label">🎂</span><span class="btn-badge">New</span></button>
       <button class="btn secondary" id="speedBtn" type="button"><span class="btn-label">Speedrun</span></button>
       <button class="btn secondary" id="cheatBtn" type="button"><span class="btn-label">Cheat Code</span></button>
     </div>
@@ -5643,6 +5596,62 @@
       window.addEventListener("load", () => {
         navigator.serviceWorker.register(`sw.js?v=${CACHE_VERSION}`).catch(() => {});
       });
+    }
+  </script>
+
+  <script type="module">
+    try {
+      const { NeatGradient } = await import("https://esm.sh/@firecms/neat");
+      const el = document.getElementById("neatGradient");
+      if (el) {
+        new NeatGradient({
+          ref: el,
+          colors: [
+            { color: "#3D0C1A", enabled: true },
+            { color: "#330819", enabled: true },
+            { color: "#250012", enabled: true },
+            { color: "#2D050B", enabled: true },
+            { color: "#7B3E12", enabled: true }
+          ],
+          speed: 1.5,
+          horizontalPressure: 4,
+          verticalPressure: 4,
+          waveFrequencyX: 3,
+          waveFrequencyY: 2,
+          waveAmplitude: 1,
+          shadows: 2,
+          highlights: 2,
+          colorBrightness: 1,
+          colorSaturation: -1,
+          wireframe: false,
+          colorBlending: 8,
+          backgroundColor: "#010101",
+          backgroundAlpha: 1,
+          grainScale: 2,
+          grainSparsity: 0,
+          grainIntensity: 0,
+          grainSpeed: 1,
+          resolution: 0.75,
+          yOffset: 0,
+          yOffsetWaveMultiplier: 2.2,
+          yOffsetColorMultiplier: 2.5,
+          yOffsetFlowMultiplier: 2.8,
+          flowDistortionA: 2.8,
+          flowDistortionB: 2.4,
+          flowScale: 1.5,
+          flowEase: 0.41,
+          flowEnabled: false,
+          enableProceduralTexture: false,
+          domainWarpEnabled: false,
+          vignetteIntensity: 0,
+          fresnelEnabled: false,
+          iridescenceEnabled: false,
+          bloomIntensity: 0,
+          chromaticAberration: 0
+        });
+      }
+    } catch (e) {
+      console.warn("[Jicombo] NeatGradient unavailable:", e);
     }
   </script>
 </body>
