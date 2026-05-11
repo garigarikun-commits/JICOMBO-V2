@@ -1591,9 +1591,11 @@
        ═══════════════════════════════════════════════════════════════════ */
 
     /* ── FOND — NeatGradient canvas (fallback CSS) ── */
-    html, body { background-color: #2d050b; overscroll-behavior: none; }
+    html, body { background-color: #21001c; overscroll-behavior: none; }
     #viewport-bg {
-      background: linear-gradient(175deg, #3d0c1a 0%, #2d050b 38%, #250012 65%, #2d050b 100%);
+      background:
+        radial-gradient(circle at 50% 18%, rgba(170,84,49,0.94) 0%, rgba(151,61,53,0.88) 26%, rgba(110,30,66,0.70) 52%, rgba(33,0,28,0) 76%),
+        linear-gradient(180deg, #9b4d3d 0%, #7a2840 34%, #52133f 63%, #36032d 82%, #21001c 100%);
     }
     #neatGradient {
       position: absolute;
@@ -5379,11 +5381,11 @@
         new NeatGradient({
           ref: el,
           colors: [
-            { color: "#3D0C1A", enabled: true },
-            { color: "#330819", enabled: true },
-            { color: "#250012", enabled: true },
-            { color: "#2D050B", enabled: true },
-            { color: "#7B3E12", enabled: true }
+            { color: "#C86040", enabled: true },
+            { color: "#9B3050", enabled: true },
+            { color: "#6A1868", enabled: true },
+            { color: "#420832", enabled: true },
+            { color: "#9B4D3D", enabled: true }
           ],
           speed: 1.5,
           horizontalPressure: 4,
@@ -5393,11 +5395,11 @@
           waveAmplitude: 1,
           shadows: 2,
           highlights: 2,
-          colorBrightness: 1,
-          colorSaturation: -1,
+          colorBrightness: 1.2,
+          colorSaturation: 4,
           wireframe: false,
           colorBlending: 8,
-          backgroundColor: "#010101",
+          backgroundColor: "#21001c",
           backgroundAlpha: 1,
           grainScale: 2,
           grainSparsity: 0,
