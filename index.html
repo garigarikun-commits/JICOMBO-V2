@@ -1407,10 +1407,9 @@
           calc(14px + env(safe-area-inset-right))
           calc(18px + env(safe-area-inset-bottom))
           calc(14px + env(safe-area-inset-left));
-        justify-content: flex-start;
+        justify-content: center;
         gap: 12px;
       }
-      body.standalone-pwa #cheat.screen { justify-content: center; }
       body.standalone-pwa .cheat-card {
         width: min(100%, 340px);
       }
@@ -1673,19 +1672,6 @@
       50%       { filter: drop-shadow(0 0 48px rgba(255,196,22,.42)) drop-shadow(0 0 72px rgba(242,70,97,.14)); }
     }
 
-    /* ── HOME — centrage vertical des boutons ── */
-    #home.screen, #home.screen.active { justify-content: flex-start; }
-    .home-top {
-      flex: 1 1 0;
-      min-height: 0;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-    }
-    #home.screen::after { content: ''; flex: 1 1 0; min-height: 0; }
-
     /* ── BOUTONS HOME — JEWEL TILES ── */
     #home .actions {
       justify-items: center;
@@ -1848,13 +1834,11 @@
   </div>
   <div class="app">
   <main id="home" class="screen active" aria-label="Accueil Jicombo">
-    <div class="home-top">
-      <div id="homeExample" class="home-example" aria-hidden="true"><span class="home-emoji floaty-home">🐀</span><span class="home-op floaty-home">+</span><span class="home-emoji floaty-home">👨🏼‍🍳</span><span class="home-op floaty-home">+</span><span class="home-emoji floaty-home">🍝</span><span class="home-op floaty-home">=</span><span class="home-op home-question floaty-home">?</span></div>
-      <img id="homeLogo" class="logo home-logo" src="Assets/Jicombo-logo.png" alt="Jicombo" role="button" tabindex="0">
-      <div class="credits">
-        <div>D&rsquo;apr&egrave;s le jeu original de <a class="credit-link" href="https://axopatrick.github.io/comboji/" target="_blank" rel="noopener noreferrer">Patrick Baud</a></div>
-        <div>Spin-off non officiel par <strong>Emmanuel Galey</strong></div>
-      </div>
+    <div id="homeExample" class="home-example" aria-hidden="true"><span class="home-emoji floaty-home">🐀</span><span class="home-op floaty-home">+</span><span class="home-emoji floaty-home">👨🏼‍🍳</span><span class="home-op floaty-home">+</span><span class="home-emoji floaty-home">🍝</span><span class="home-op floaty-home">=</span><span class="home-op home-question floaty-home">?</span></div>
+    <img id="homeLogo" class="logo home-logo" src="Assets/Jicombo-logo.png" alt="Jicombo" role="button" tabindex="0">
+    <div class="credits">
+      <div>D&rsquo;apr&egrave;s le jeu original de <a class="credit-link" href="https://axopatrick.github.io/comboji/" target="_blank" rel="noopener noreferrer">Patrick Baud</a></div>
+      <div>Spin-off non officiel par <strong>Emmanuel Galey</strong></div>
     </div>
     <div class="actions">
       <button class="btn" id="playBtn" type="button"><span class="btn-label">Jouer</span></button>
