@@ -1668,6 +1668,117 @@
       50%       { filter: drop-shadow(0 14px 30px rgba(8,0,6,.60)) drop-shadow(0 0 54px rgba(255,196,22,.46)) drop-shadow(0 0 84px rgba(242,70,97,.20)); }
     }
 
+    /* ── BOUTONS HOME — LIQUID GLASS ── */
+    #home .actions .btn {
+      position: relative;
+      isolation: isolate;
+      width: 212px; height: 52px;
+      padding: 0 20px;
+      border-radius: 16px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      font-size: .95rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      transform: translateY(0);
+      transition: transform .08s cubic-bezier(.22,.8,.22,1), box-shadow .08s ease;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,235,210,.92);
+      box-shadow: 0px 0px 21px -8px rgba(255,255,255,0.30);
+    }
+    #home .actions .btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      filter: url(#glass-distortion);
+      -webkit-filter: url(#glass-distortion);
+      isolation: isolate;
+      pointer-events: none;
+    }
+    #home .actions .btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 0 12px -4px rgba(255,255,255,0.70);
+      background-color: rgba(255,255,255,0);
+      pointer-events: none;
+    }
+    #home .actions .btn:hover, #home .actions .btn:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.26);
+      box-shadow: 0px 0px 32px -6px rgba(255,255,255,0.36);
+    }
+    #home .actions .btn:active, #home .actions .btn.is-pressed {
+      transform: translateY(2px);
+      box-shadow: 0px 0px 14px -8px rgba(255,255,255,0.20);
+    }
+    #playBtn {
+      background: rgba(200,145,0,0.12);
+      border-color: rgba(255,195,45,0.26);
+      color: #ffe48a;
+    }
+    #playBtn::before { box-shadow: inset 0 0 12px -4px rgba(255,210,70,.70); }
+    #playBtn:hover, #playBtn:focus-visible {
+      background: rgba(200,145,0,0.17);
+      border-color: rgba(255,200,60,0.32);
+    }
+    #playBtn:active, #playBtn.is-pressed {
+      background: rgba(160,110,0,0.14);
+      border-color: rgba(255,185,35,0.20);
+    }
+    #dlcBtn {
+      background: rgba(225,95,95,0.11);
+      border-color: rgba(255,155,140,0.24);
+      color: #ffc4b8;
+    }
+    #dlcBtn::before { box-shadow: inset 0 0 12px -4px rgba(255,160,140,.70); }
+    #dlcBtn .btn-label { font-size: 1em; letter-spacing: .09em; }
+    #dlcBtn .btn-badge {
+      background: linear-gradient(135deg, #fff4b2 0%, #ffca36 55%, #ff7c26 100%);
+      color: #3a1800;
+      font-weight: 900;
+      box-shadow: 0 2px 8px rgba(180,78,0,.26);
+    }
+    #speedBtn {
+      background: rgba(210,30,75,0.11);
+      border-color: rgba(255,110,130,0.24);
+      color: #ffaec0;
+    }
+    #speedBtn::before { box-shadow: inset 0 0 12px -4px rgba(255,100,130,.70); }
+    #speedBtn:hover, #speedBtn:focus-visible {
+      background: rgba(210,30,75,0.17);
+      border-color: rgba(255,110,130,0.34);
+    }
+    #cheatBtn {
+      background: rgba(130,20,175,0.10);
+      border-color: rgba(195,110,230,0.22);
+      color: #e6b8ff;
+    }
+    #cheatBtn::before { box-shadow: inset 0 0 12px -4px rgba(195,120,240,.70); }
+    #cheatBtn:hover, #cheatBtn:focus-visible {
+      background: rgba(130,20,175,0.16);
+      border-color: rgba(195,110,230,0.32);
+    }
+    @media (max-width: 640px) {
+      #home .actions .btn { width: 200px; height: 50px; font-size: .93rem; }
+    }
+    @media (max-width: 390px) {
+      #home .actions .btn { width: 188px; height: 48px; }
+    }
+    @media (min-width: 641px) {
+      #home .actions .btn { width: 224px; height: 54px; font-size: .97rem; }
+    }
+    @media (hover: none) {
+      #home .actions .btn { transition: transform .06s ease, box-shadow .06s ease; }
+    }
+
     /* ── DLC BIRTHDAY — pulse nouveauté ── */
     #dlcBtn {
       animation: paDlcPulse 4s ease-in-out infinite;
