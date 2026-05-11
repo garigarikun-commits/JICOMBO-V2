@@ -1587,17 +1587,11 @@
     }
 
     /* ═══════════════════════════════════════════════════════════════════
-       PARADISE ARCADE — JICOMBO V2
-       Gradient tropical vivant · 3D physique · Poppins 900 confiant
+       JICOMBO V2 — Fond · Logo · Cœurs
        ═══════════════════════════════════════════════════════════════════ */
 
-    :root {
-      --pa-gold-floor: rgba(155, 82, 0, .90);
-      --pa-trans-btn: transform .08s cubic-bezier(.22,.8,.22,1), box-shadow .08s ease;
-    }
-
     /* ── FOND — NeatGradient canvas (fallback CSS) ── */
-    html, body { background-color: #2d050b; }
+    html, body { background-color: #2d050b; overscroll-behavior: none; }
     #viewport-bg {
       background: linear-gradient(175deg, #3d0c1a 0%, #2d050b 38%, #250012 65%, #2d050b 100%);
     }
@@ -1651,7 +1645,7 @@
       box-shadow: 0 0 24px rgba(255,196,22,.50);
     }
 
-    /* ── LOGO HOME — glow pulsant ── */
+    /* ── LOGO — flottement + glow pulsant ── */
     .logo {
       filter: drop-shadow(0 12px 26px rgba(8,0,6,.52)) drop-shadow(0 0 24px rgba(255,196,22,.20));
       transition: filter .28s ease, transform .28s cubic-bezier(.2,.8,.2,1);
@@ -1674,295 +1668,20 @@
       50%       { filter: drop-shadow(0 14px 30px rgba(8,0,6,.60)) drop-shadow(0 0 54px rgba(255,196,22,.46)) drop-shadow(0 0 84px rgba(242,70,97,.20)); }
     }
 
-    /* ══════════════════════════════════════════
-       BOUTONS — LIQUID GLASS (SVG distortion)
-    ══════════════════════════════════════════ */
-
-    .actions .btn {
-      position: relative;
-      isolation: isolate;
-      width: 212px; height: 52px;
-      padding: 0 20px;
-      border-radius: 16px;
-      font-family: "Poppins", sans-serif;
-      font-weight: 800;
-      font-size: .95rem;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-      transform: translateY(0);
-      transition: var(--pa-trans-btn);
-      /* Tint de base (surchargé par bouton) */
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.18);
-      color: rgba(255,235,210,.92);
-      box-shadow: 0px 0px 21px -8px rgba(255,255,255,0.30);
-    }
-    /* Couche de verre : backdrop-filter + distorsion SVG — exact référence */
-    .actions .btn::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      border-radius: inherit;
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      filter: url(#glass-distortion);
-      -webkit-filter: url(#glass-distortion);
-      isolation: isolate;
-      pointer-events: none;
-    }
-    /* Reflet interne — highlight de vitre — exact référence */
-    .actions .btn::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      border-radius: inherit;
-      box-shadow: inset 0 0 12px -4px rgba(255,255,255,0.70);
-      background-color: rgba(255,255,255,0);
-      pointer-events: none;
-    }
-    .actions .btn:hover, .actions .btn:focus-visible {
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,.26);
-      box-shadow: 0px 0px 32px -6px rgba(255,255,255,0.36);
-    }
-    .actions .btn:active, .actions .btn.is-pressed {
-      transform: translateY(2px);
-      box-shadow: 0px 0px 14px -8px rgba(255,255,255,0.20);
-    }
-
-    /* ── JOUER — verre ambre doré ── */
-    #playBtn {
-      background: rgba(200, 145, 0, 0.12);
-      border-color: rgba(255, 195, 45, 0.26);
-      color: #ffe48a;
-      box-shadow: 0px 0px 21px -8px rgba(255,255,255,0.30);
-    }
-    #playBtn::before {
-      box-shadow: inset 0 0 12px -4px rgba(255,210,70,.70);
-    }
-    #playBtn:hover, #playBtn:focus-visible {
-      background: rgba(200, 145, 0, 0.17);
-      border-color: rgba(255, 200, 60, 0.32);
-      box-shadow: 0px 0px 32px -6px rgba(255,255,255,0.36);
-    }
-    #playBtn:active, #playBtn.is-pressed {
-      background: rgba(160, 110, 0, 0.14);
-      border-color: rgba(255, 185, 35, 0.20);
-      box-shadow: 0px 0px 14px -8px rgba(255,255,255,0.20);
-    }
-
-    /* ── DLC BIRTHDAY — verre pêche-rose · animation nouveauté ── */
+    /* ── DLC BIRTHDAY — pulse nouveauté ── */
     #dlcBtn {
-      background: rgba(225, 95, 95, 0.11);
-      border-color: rgba(255, 155, 140, 0.24);
-      color: #ffc4b8;
       animation: paDlcPulse 4s ease-in-out infinite;
     }
-    #dlcBtn::before {
-      box-shadow: inset 0 0 12px -4px rgba(255,160,140,.70);
+    #dlcBtn:hover, #dlcBtn:focus-visible,
+    #dlcBtn:active, #dlcBtn.is-pressed {
+      animation: none;
     }
     @keyframes paDlcPulse {
       0%, 100% { box-shadow: 0px 0px 21px -8px rgba(255,155,140,0.36); }
       50% { box-shadow: 0px 0px 36px -4px rgba(255,120,130,0.54), 0 0 0 5px rgba(255,155,140,.07); }
     }
-    #home.active #dlcBtn { animation: paDlcPulse 4s ease-in-out infinite; }
-    #dlcBtn:hover, #dlcBtn:focus-visible {
-      animation: none;
-      background: rgba(225, 95, 95, 0.17);
-      border-color: rgba(255, 155, 140, 0.34);
-    }
-    #dlcBtn:active, #dlcBtn.is-pressed {
-      animation: none;
-      background: rgba(200, 60, 70, 0.14);
-    }
-    #dlcBtn .btn-label { font-size: 1em; letter-spacing: .09em; }
-    #dlcBtn .btn-badge {
-      background: linear-gradient(135deg, #fff4b2 0%, #ffca36 55%, #ff7c26 100%);
-      color: #3a1800;
-      font-weight: 900;
-      box-shadow: 0 2px 8px rgba(180,78,0,.26);
-    }
 
-    /* ── SPEEDRUN — verre rouge cramoisi ── */
-    #speedBtn {
-      background: rgba(210, 30, 75, 0.11);
-      border-color: rgba(255, 110, 130, 0.24);
-      color: #ffaec0;
-      box-shadow: 0px 0px 21px -8px rgba(255,255,255,0.30);
-    }
-    #speedBtn::before {
-      box-shadow: inset 0 0 12px -4px rgba(255,100,130,.70);
-    }
-    #speedBtn:hover, #speedBtn:focus-visible {
-      background: rgba(210, 30, 75, 0.17);
-      border-color: rgba(255, 110, 130, 0.34);
-      box-shadow: 0px 0px 32px -6px rgba(255,255,255,0.36);
-    }
-    #speedBtn:active, #speedBtn.is-pressed {
-      background: rgba(180, 20, 60, 0.14);
-      box-shadow: 0px 0px 14px -8px rgba(255,255,255,0.20);
-    }
-
-    /* ── CHEAT CODE — verre violet profond ── */
-    #cheatBtn {
-      background: rgba(130, 20, 175, 0.10);
-      border-color: rgba(195, 110, 230, 0.22);
-      color: #e6b8ff;
-      box-shadow: 0px 0px 21px -8px rgba(255,255,255,0.30);
-    }
-    #cheatBtn::before {
-      box-shadow: inset 0 0 12px -4px rgba(195,120,240,.70);
-    }
-    #cheatBtn:hover, #cheatBtn:focus-visible {
-      background: rgba(130, 20, 175, 0.16);
-      border-color: rgba(195, 110, 230, 0.32);
-      box-shadow: 0px 0px 32px -6px rgba(255,255,255,0.36);
-    }
-    #cheatBtn:active, #cheatBtn.is-pressed {
-      background: rgba(100, 10, 140, 0.14);
-      box-shadow: 0px 0px 14px -8px rgba(255,255,255,0.20);
-    }
-
-    /* ══════════════════════════════════════════
-       TUILES EMOJI — depth 3D
-    ══════════════════════════════════════════ */
-    .clue {
-      background: rgba(104,21,44,.20);
-      border: 1px solid rgba(255,255,255,.09);
-      backdrop-filter: blur(14px) saturate(140%);
-      -webkit-backdrop-filter: blur(14px) saturate(140%);
-      box-shadow:
-        0 4px 0 rgba(0,0,0,.54),
-        0 10px 26px rgba(0,0,0,.36),
-        inset 0 1px 0 rgba(255,208,98,.10),
-        inset 0 0 0 .5px rgba(255,255,255,.06);
-      border-radius: 30px;
-    }
-    @media (hover: hover) {
-      .clue:hover {
-        transform: translateY(-6px) scale(1.06);
-        background: rgba(130,28,58,.26);
-        border-color: rgba(255,255,255,.15);
-        box-shadow:
-          0 10px 0 rgba(0,0,0,.46),
-          0 20px 38px rgba(0,0,0,.40),
-          0 0 32px rgba(255,196,22,.12),
-          inset 0 1px 0 rgba(255,208,98,.16);
-      }
-    }
-
-    /* ══════════════════════════════════════════
-       TEXTE & TYPO
-    ══════════════════════════════════════════ */
-    .prompt-title {
-      font-family: "Poppins", sans-serif;
-      font-weight: 800;
-      font-size: clamp(18px, 4.8vw, 23px);
-      letter-spacing: .01em;
-      line-height: 1.22;
-      background: linear-gradient(118deg, #ffe566 0%, #ffca2e 35%, #ff8038 68%, #f24661 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: none;
-    }
-    .hint {
-      color: rgba(254,244,224,.72);
-    }
-    .hint-label {
-      color: #ffd45b;
-      font-weight: 600;
-    }
-
-    /* ══════════════════════════════════════════
-       VALIDATE BTN — 3D doré arcade
-    ══════════════════════════════════════════ */
-    .validate-btn {
-      width: 152px;
-      height: 48px;
-      border-radius: 14px;
-      background: linear-gradient(138deg, #fff090 0%, #ffcc1e 22%, #ffa424 58%, #ff6828 100%);
-      color: #281000;
-      font-weight: 900;
-      font-family: "Poppins", sans-serif;
-      letter-spacing: .10em;
-      border: none;
-      box-shadow:
-        0 5px 0 var(--pa-gold-floor),
-        0 10px 28px rgba(255,138,40,.36),
-        inset 0 1.5px 0 rgba(255,255,255,.52);
-      transform: translateY(0);
-      transition: var(--pa-trans-btn);
-    }
-    .validate-btn::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background: linear-gradient(180deg, rgba(255,255,255,.26) 0%, rgba(255,255,255,0) 48%);
-      pointer-events: none;
-    }
-    .validate-btn:not(:disabled):hover,
-    .validate-btn:not(:disabled):focus-visible {
-      transform: translateY(-2px);
-      box-shadow: 0 7px 0 var(--pa-gold-floor), 0 16px 36px rgba(255,138,40,.50), inset 0 1.5px 0 rgba(255,255,255,.58);
-    }
-    .validate-btn:not(:disabled):active {
-      transform: translateY(4px);
-      box-shadow: 0 1px 0 var(--pa-gold-floor), 0 3px 10px rgba(0,0,0,.24), inset 0 2px 5px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.24);
-    }
-    .validate-btn:disabled {
-      opacity: .32;
-      box-shadow: 0 3px 0 rgba(110,54,0,.42), 0 6px 14px rgba(0,0,0,.24);
-    }
-    .answer-form.ready .validate-btn:not(:disabled) {
-      animation: paValidatePulse 3.2s ease-in-out infinite;
-    }
-    @keyframes paValidatePulse {
-      0%, 100% { box-shadow: 0 5px 0 var(--pa-gold-floor), 0 10px 28px rgba(255,138,40,.36), inset 0 1.5px 0 rgba(255,255,255,.52); }
-      50%       { box-shadow: 0 5px 0 var(--pa-gold-floor), 0 14px 36px rgba(255,138,40,.52), 0 0 0 5px rgba(255,196,22,.12), inset 0 1.5px 0 rgba(255,255,255,.56); }
-    }
-
-    /* ── ANSWER INPUT ── */
-    .answer-input {
-      border-radius: 16px;
-      border: 2px solid rgba(254,184,5,.28);
-      background: rgba(8,2,12,.68);
-      color: #fef0e0;
-      font-weight: 800;
-    }
-    .answer-input:focus {
-      border-color: rgba(254,184,5,.76);
-      background: rgba(18,6,16,.72);
-      box-shadow: 0 0 0 4px rgba(254,184,5,.14), 0 0 30px rgba(254,184,5,.22), inset 0 0 18px rgba(0,0,0,.24);
-    }
-
-    /* ── LEVEL PILL ── */
-    .level-pill {
-      padding: 10px 20px;
-      font-weight: 800;
-      font-size: .72rem;
-      letter-spacing: .22em;
-      color: #ffd45b;
-      background: rgba(254,184,5,.10);
-      border: 1.5px solid rgba(254,184,5,.30);
-      box-shadow: 0 4px 16px rgba(0,0,0,.28), 0 0 18px rgba(254,184,5,.10);
-    }
-
-    /* ── CHRONO ── */
-    .chrono-display {
-      font-weight: 800;
-      letter-spacing: .06em;
-      color: #ffe9a5;
-      background: rgba(7,2,10,.72);
-      border-color: rgba(254,236,103,.18);
-      box-shadow: 0 4px 16px rgba(0,0,0,.28), 0 0 16px rgba(254,184,5,.10);
-      text-shadow: 0 0 10px rgba(254,184,5,.46);
-    }
-
-    /* ── HEARTS ── */
+    /* ── HEARTS — respiration ── */
     .heart.live {
       filter: drop-shadow(0 0 12px rgba(242,70,97,.46));
       animation: paHeartBeat 2.2s ease-in-out infinite;
@@ -1973,92 +1692,11 @@
       58% { transform: scale(.97); }
     }
 
-    /* ── CHEAT CARD ── */
-    .cheat-card {
-      background: linear-gradient(158deg, rgba(70,14,46,.96) 0%, rgba(14,3,18,.98) 80%);
-      border-color: rgba(255,218,128,.18);
-      box-shadow: 0 48px 100px rgba(0,0,0,.64), inset 0 1px 0 rgba(255,255,255,.06);
-    }
-    .cheat-key {
-      height: 44px;
-      border-radius: 12px;
-      background: rgba(255,218,128,.05);
-      border: 1px solid rgba(255,218,128,.14);
-      box-shadow: 0 3px 0 rgba(88,34,0,.38), 0 5px 12px rgba(0,0,0,.24);
-      transition: var(--pa-trans-btn);
-    }
-    .cheat-key:hover, .cheat-key:focus-visible {
-      border-color: rgba(255,218,128,.30);
-      background: rgba(255,218,128,.10);
-      box-shadow: 0 3px 0 rgba(88,34,0,.46), 0 7px 16px rgba(0,0,0,.28);
-    }
-    .cheat-key:active {
-      transform: translateY(3px);
-      box-shadow: 0 0 0 transparent, 0 2px 6px rgba(0,0,0,.20), inset 0 2px 4px rgba(0,0,0,.24);
-    }
-
-    /* ── MODALES ── */
-    .overlay {
-      background:
-        radial-gradient(ellipse 540px 270px at 50% 8%, rgba(255,196,22,.14) 0%, transparent 56%),
-        radial-gradient(ellipse 420px 320px at 78% 82%, rgba(242,70,97,.10) 0%, transparent 52%),
-        rgba(4,0,8,.78);
-      backdrop-filter: blur(26px) saturate(120%);
-      -webkit-backdrop-filter: blur(26px) saturate(120%);
-    }
-    .modal {
-      width: min(344px, 88vw);
-      padding: 30px 26px 26px;
-      border-radius: 30px;
-    }
-    .modal .btn {
-      height: 56px;
-      border-radius: 15px;
-      background: linear-gradient(138deg, #fff090 0%, #ffcc1e 22%, #ffa424 58%, #ff6828 100%);
-      color: #281000;
-      font-weight: 900;
-      letter-spacing: .10em;
-      border: none;
-      box-shadow: 0 5px 0 var(--pa-gold-floor), 0 12px 28px rgba(255,138,40,.36), inset 0 1.5px 0 rgba(255,255,255,.52);
-      transform: translateY(0);
-      transition: var(--pa-trans-btn);
-    }
-    .modal .btn:hover, .modal .btn:focus-visible {
-      transform: translateY(-2px);
-      box-shadow: 0 7px 0 var(--pa-gold-floor), 0 18px 36px rgba(255,138,40,.50), inset 0 1.5px 0 rgba(255,255,255,.58);
-    }
-    .modal .btn:active {
-      transform: translateY(4px);
-      box-shadow: 0 1px 0 var(--pa-gold-floor), 0 3px 10px rgba(0,0,0,.24), inset 0 2px 5px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.24);
-    }
-
     /* ── REDUCED MOTION ── */
     @media (prefers-reduced-motion: reduce) {
       #homeLogo, .game-logo, #cheatLogo { animation: none; }
-      #playBtn, #home.active #playBtn   { animation: none; }
-      .aurora-orb                        { animation: none; }
       #viewport-bg                       { animation: none; }
       .heart.live                        { animation: none; }
-      .answer-form.ready .validate-btn   { animation: none; }
-    }
-
-    /* ── MOBILE TOUCH — transitions rapides ── */
-    @media (hover: none) {
-      .actions .btn, .actions .btn.secondary,
-      .validate-btn, .modal .btn, .cheat-key {
-        transition: transform .06s ease, box-shadow .06s ease;
-      }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      .actions .btn { width: 200px; height: 50px; font-size: .93rem; }
-    }
-    @media (max-width: 390px) {
-      .actions .btn { width: 188px; height: 48px; }
-    }
-    @media (min-width: 641px) {
-      .actions .btn { width: 224px; height: 54px; font-size: .97rem; }
     }
 
     /* ══════════════════════════════════════════════════════════════════ */
