@@ -4885,7 +4885,11 @@
         return;
       }
       if (kind === "dlc") {
-        playToneSequence([392, 392, 440, 392, 523], "triangle", 0.19, 64, 0.06);
+        try {
+          const a = new Audio("./Assets/Sons/birthday.mp3");
+          a.volume = 0.72;
+          a.play().catch(() => {});
+        } catch(e) {}
         return;
       }
       if (kind === "speed") {
