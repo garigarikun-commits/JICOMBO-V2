@@ -5538,7 +5538,7 @@
     homeLogo.addEventListener("click", refreshHome);
     homeLogo.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") refreshHome(); });
     bindHomeAction(playBtn, "play", () => startGame(false));
-    bindHomeAction(dlcBtn, "dlc", showBirthdayDlc);
+    bindHomeAction(dlcBtn, "dlc", () => { spawnConfetti(); showBirthdayDlc(); });
     bindHomeAction(speedBtn, "speed", () => startGame(true));
     bindHomeAction(cheatBtn, "cheat", showCheat);
     gameLogo.addEventListener("click", () => {
