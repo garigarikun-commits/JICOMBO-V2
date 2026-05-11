@@ -71,10 +71,11 @@
     }
     #viewport-bg {
       position: fixed;
-      top: -400px;
-      left: -100px;
-      right: -100px;
-      height: calc(100dvh + 800px);
+      top: -120px;
+      right: 0;
+      bottom: -120px;
+      left: 0;
+      height: calc(var(--app-height, 100dvh) + 240px);
       z-index: -1;
       pointer-events: none;
       background:
@@ -1585,250 +1586,20 @@
         font-size: 13px;
       }
     }
-
-    /* ═══════════════════════════════════════════════════════════════════
-       JICOMBO V2 — Fond · Logo · Cœurs
-       ═══════════════════════════════════════════════════════════════════ */
-
-    /* ── FOND — NeatGradient canvas (fallback CSS) ── */
-    html, body { background-color: #21001c; }
-    #viewport-bg {
-      background:
-        radial-gradient(circle at 50% 18%, rgba(170,84,49,0.94) 0%, rgba(151,61,53,0.88) 26%, rgba(110,30,66,0.70) 52%, rgba(33,0,28,0) 76%),
-        linear-gradient(180deg, #9b4d3d 0%, #7a2840 34%, #52133f 63%, #36032d 82%, #21001c 100%);
-    }
-    #neatGradient {
-      position: absolute;
-      inset: 0;
-      width: 100% !important;
-      height: 100% !important;
-      display: block;
-    }
-
-    /* ── SPLASH SCREEN — logo + barre premium ── */
-    .launch-splash {
-      background:
-        radial-gradient(ellipse 640px 440px at 50% 36%, rgba(255,196,22,.18) 0%, transparent 62%),
-        radial-gradient(ellipse 520px 400px at 75% 72%, rgba(242,70,97,.14) 0%, transparent 58%),
-        rgba(16, 2, 18, .90) !important;
-      backdrop-filter: blur(28px) saturate(130%) !important;
-      -webkit-backdrop-filter: blur(28px) saturate(130%) !important;
-    }
-    .launch-splash__inner {
-      width: min(260px, 58vw);
-      height: auto;
-      gap: 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .launch-splash__logo {
-      width: min(200px, 48vw);
-      height: auto;
-      display: block;
-      filter: drop-shadow(0 0 32px rgba(255,196,22,.48)) drop-shadow(0 12px 28px rgba(0,0,0,.52));
-      animation: paSplashLogo .72s cubic-bezier(.18,.88,.22,1) both;
-    }
-    @keyframes paSplashLogo {
-      0%   { opacity: 0; transform: scale(.62) translateY(18px); filter: blur(8px) drop-shadow(0 0 0px rgba(255,196,22,0)); }
-      60%  { opacity: 1; transform: scale(1.06) translateY(-4px); }
-      100% { opacity: 1; transform: scale(1) translateY(0); filter: drop-shadow(0 0 32px rgba(255,196,22,.46)) drop-shadow(0 12px 28px rgba(0,0,0,.52)); }
-    }
-    .launch-splash__glow {
-      width: 300px; height: 170px;
-      background: radial-gradient(circle, rgba(255,196,22,.32) 0%, rgba(242,70,97,.18) 42%, rgba(242,70,97,0) 74%) !important;
-      filter: blur(30px) !important;
-    }
-    .launch-splash__bar {
-      width: min(200px, 46vw);
-    }
-    .launch-splash__bar-fill {
-      background: linear-gradient(90deg, #fff4b2 0%, #ffd040 42%, #ff7c28 100%);
-      box-shadow: 0 0 24px rgba(255,196,22,.50);
-    }
-
-    /* ── LOGO — flottement + glow pulsant ── */
-    .logo {
-      filter: drop-shadow(0 4px 8px rgba(8,0,6,.30)) drop-shadow(0 0 24px rgba(255,196,22,.18));
-      transition: filter .28s ease, transform .28s cubic-bezier(.2,.8,.2,1);
-    }
-    .logo:hover, .logo:focus-visible {
-      filter: drop-shadow(0 4px 10px rgba(8,0,6,.36)) drop-shadow(0 0 44px rgba(255,196,22,.36));
-    }
-    #homeLogo {
-      animation: paLogoFloat 6.4s ease-in-out infinite, paLogoGlow 5.2s ease-in-out infinite;
-    }
-    .game-logo, #cheatLogo {
-      animation: paLogoFloat 6.4s ease-in-out infinite;
-    }
-    @keyframes paLogoFloat {
-      0%, 100% { transform: translateY(0)  rotate(-.4deg); }
-      50%       { transform: translateY(-6px) rotate(.4deg); }
-    }
-    @keyframes paLogoGlow {
-      0%, 100% { filter: drop-shadow(0 4px 8px rgba(8,0,6,.30)) drop-shadow(0 0 28px rgba(255,196,22,.18)); }
-      50%       { filter: drop-shadow(0 4px 10px rgba(8,0,6,.34)) drop-shadow(0 0 52px rgba(255,196,22,.44)) drop-shadow(0 0 80px rgba(242,70,97,.16)); }
-    }
-
-    /* ── BOUTONS HOME — JEWEL TILES ── */
-    #home .actions {
-      justify-items: center;
-    }
-    #home .actions .btn {
-      position: relative;
-      width: 220px; height: 54px;
-      padding: 0 20px;
-      border-radius: 14px;
-      font-family: "Poppins", sans-serif;
-      font-weight: 800;
-      font-size: .90rem;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-      color: rgba(254,252,206,.9);
-      cursor: pointer;
-      overflow: visible;
-      transform: translateY(0) scale(1);
-      transition: transform 140ms cubic-bezier(.22,1,.36,1), box-shadow 140ms cubic-bezier(.22,1,.36,1), filter 140ms ease;
-    }
-    #home .actions .btn:hover, #home .actions .btn:focus-visible {
-      transform: translateY(-3px) scale(1.015);
-      filter: brightness(1.12);
-    }
-    #home .actions .btn:active, #home .actions .btn.is-pressed {
-      transform: translateY(1px) scale(0.97);
-      filter: brightness(0.92);
-      transition-duration: 70ms;
-    }
-
-    /* JOUER — ambre doré transparent */
-    #playBtn {
-      background: rgba(200,130,0,.13);
-      border: 1px solid rgba(255,210,80,.22);
-      box-shadow: none;
-    }
-    #playBtn:hover, #playBtn:focus-visible {
-      background: rgba(200,130,0,.36);
-      border-color: rgba(255,220,90,.55);
-      box-shadow: 0 6px 28px rgba(220,140,0,.60), 0 0 0 1px rgba(255,215,80,.20);
-    }
-    #playBtn:active, #playBtn.is-pressed {
-      background: rgba(200,130,0,.09);
-    }
-
-    /* DLC : BIRTHDAY — terracotta ardent transparent */
-    #dlcBtn {
-      background: rgba(195,70,40,.13);
-      border: 1px solid rgba(255,170,130,.26);
-      animation: dlcRing 2.2s cubic-bezier(0,.5,.5,1) infinite !important;
-    }
-    @keyframes dlcRing {
-      0%  { box-shadow: 0 0 0 0px rgba(255,215,90,.70); }
-      55% { box-shadow: 0 0 0 4px rgba(255,215,90,.0);  }
-      100%{ box-shadow: 0 0 0 4px rgba(255,215,90,.0);  }
-    }
-    #dlcBtn:hover, #dlcBtn:focus-visible,
-    #dlcBtn:active, #dlcBtn.is-pressed {
-      animation: none !important;
-      box-shadow: none;
-    }
-    #dlcBtn:hover, #dlcBtn:focus-visible {
-      background: rgba(195,70,40,.36);
-      border-color: rgba(255,180,145,.55);
-      box-shadow: 0 6px 28px rgba(230,100,55,.62), 0 0 0 1px rgba(255,175,130,.20);
-    }
-    #dlcBtn:active, #dlcBtn.is-pressed {
-      background: rgba(195,70,40,.09);
-    }
-    #dlcBtn .btn-label { font-size: 1em; letter-spacing: .13em; }
-    #dlcBtn .btn-badge {
-      background: linear-gradient(135deg, #FFF4B2 0%, #FFCA36 55%, #FF7C26 100%);
-      color: #3A1800;
-      font-weight: 900;
-      box-shadow: 0 2px 8px rgba(180,78,0,.35);
-    }
-
-    /* SPEEDRUN — rubis sang transparent */
-    #speedBtn {
-      background: rgba(175,15,55,.13);
-      border: 1px solid rgba(255,130,155,.24);
-    }
-    #speedBtn:hover, #speedBtn:focus-visible {
-      background: rgba(175,15,55,.36);
-      border-color: rgba(255,145,168,.55);
-      box-shadow: 0 6px 28px rgba(210,30,75,.62), 0 0 0 1px rgba(255,135,160,.20);
-    }
-    #speedBtn:active, #speedBtn.is-pressed {
-      background: rgba(175,15,55,.09);
-    }
-
-    /* CHEAT CODE — améthyste transparent */
-    #cheatBtn {
-      background: rgba(110,20,170,.13);
-      border: 1px solid rgba(200,140,255,.22);
-    }
-    #cheatBtn:hover, #cheatBtn:focus-visible {
-      background: rgba(110,20,170,.36);
-      border-color: rgba(210,152,255,.55);
-      box-shadow: 0 6px 28px rgba(140,35,220,.62), 0 0 0 1px rgba(200,145,255,.20);
-    }
-    #cheatBtn:active, #cheatBtn.is-pressed {
-      background: rgba(110,20,170,.09);
-    }
-
-    @media (max-width: 640px) {
-      #home .actions .btn { width: 205px; height: 52px; font-size: .88rem; }
-    }
-    @media (max-width: 390px) {
-      #home .actions .btn { width: 190px; height: 50px; font-size: .86rem; }
-    }
-    @media (min-width: 641px) {
-      #home .actions .btn { width: 232px; height: 56px; font-size: .92rem; }
-    }
-    @media (hover: none) {
-      #home .actions .btn { transition: transform .07s ease, box-shadow .07s ease, filter .07s ease; }
-    }
-
-    /* ── HEARTS — respiration ── */
-    .heart.live {
-      filter: drop-shadow(0 0 12px rgba(242,70,97,.46));
-      animation: paHeartBeat 2.2s ease-in-out infinite;
-    }
-    @keyframes paHeartBeat {
-      0%, 100% { transform: scale(1); }
-      44% { transform: scale(1.16); }
-      58% { transform: scale(.97); }
-    }
-
-    /* ── REDUCED MOTION ── */
-    @media (prefers-reduced-motion: reduce) {
-      #homeLogo, .game-logo, #cheatLogo { animation: none; }
-      #viewport-bg                       { animation: none; }
-      .heart.live                        { animation: none; }
-    }
-
-    /* ══════════════════════════════════════════════════════════════════ */
-
   </style>
 </head>
 <body>
-  <svg width="0" height="0" style="position: absolute;" aria-hidden="true">
-    <defs>
-      <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.008 0.008" numOctaves="2" seed="92" result="noise"/>
-        <feGaussianBlur in="noise" stdDeviation="2" result="blurred"/>
-        <feDisplacementMap in="SourceGraphic" in2="blurred" scale="150" xChannelSelector="R" yChannelSelector="G"/>
-      </filter>
-    </defs>
-  </svg>
   <div id="launchSplash" class="launch-splash" aria-hidden="true">
     <div class="launch-splash__inner">
-      <img class="launch-splash__logo" src="Assets/Jicombo-logo.png" alt="Jicombo" aria-hidden="true">
       <div class="launch-splash__glow"></div>
       <div class="launch-splash__bar" aria-hidden="true"><div class="launch-splash__bar-fill"></div></div>
     </div>
   </div>
   <div id="viewport-bg" aria-hidden="true">
-    <canvas id="neatGradient"></canvas>
+    <span class="aurora-orb orb-a"></span>
+    <span class="aurora-orb orb-b"></span>
+    <span class="aurora-orb orb-c"></span>
+    <span class="aurora-orb orb-d"></span>
   </div>
   <div class="app">
   <main id="home" class="screen active" aria-label="Accueil Jicombo">
@@ -1840,7 +1611,7 @@
     </div>
     <div class="actions">
       <button class="btn" id="playBtn" type="button"><span class="btn-label">Jouer</span></button>
-      <button class="btn secondary" id="dlcBtn" type="button"><span class="btn-label">DLC : BIRTHDAY</span><span class="btn-badge">New</span></button>
+      <button class="btn secondary" id="dlcBtn" type="button"><span class="btn-label">Birthday Cake</span><span class="btn-badge">New</span></button>
       <button class="btn secondary" id="speedBtn" type="button"><span class="btn-label">Speedrun</span></button>
       <button class="btn secondary" id="cheatBtn" type="button"><span class="btn-label">Cheat Code</span></button>
     </div>
@@ -5364,62 +5135,6 @@
       window.addEventListener("load", () => {
         navigator.serviceWorker.register(`sw.js?v=${CACHE_VERSION}`).catch(() => {});
       });
-    }
-  </script>
-
-  <script type="module">
-    try {
-      const { NeatGradient } = await import("https://esm.sh/@firecms/neat");
-      const el = document.getElementById("neatGradient");
-      if (el) {
-        new NeatGradient({
-          ref: el,
-          colors: [
-            { color: "#C86040", enabled: true },
-            { color: "#9B4D3D", enabled: true },
-            { color: "#7A2840", enabled: true },
-            { color: "#52133F", enabled: true },
-            { color: "#36032D", enabled: true }
-          ],
-          speed: 1.5,
-          horizontalPressure: 4,
-          verticalPressure: 4,
-          waveFrequencyX: 3,
-          waveFrequencyY: 2,
-          waveAmplitude: 1,
-          shadows: 2,
-          highlights: 2,
-          colorBrightness: 1.2,
-          colorSaturation: 2,
-          wireframe: false,
-          colorBlending: 8,
-          backgroundColor: "#21001c",
-          backgroundAlpha: 1,
-          grainScale: 2,
-          grainSparsity: 0,
-          grainIntensity: 0,
-          grainSpeed: 1,
-          resolution: 0.75,
-          yOffset: 0,
-          yOffsetWaveMultiplier: 2.2,
-          yOffsetColorMultiplier: 2.5,
-          yOffsetFlowMultiplier: 2.8,
-          flowDistortionA: 2.8,
-          flowDistortionB: 2.4,
-          flowScale: 1.5,
-          flowEase: 0.41,
-          flowEnabled: false,
-          enableProceduralTexture: false,
-          domainWarpEnabled: false,
-          vignetteIntensity: 0,
-          fresnelEnabled: false,
-          iridescenceEnabled: false,
-          bloomIntensity: 0,
-          chromaticAberration: 0
-        });
-      }
-    } catch (e) {
-      console.warn("[Jicombo] NeatGradient unavailable:", e);
     }
   </script>
 </body>
