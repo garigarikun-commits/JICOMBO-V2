@@ -1649,11 +1649,11 @@
 
     /* ── LOGO — flottement + glow pulsant ── */
     .logo {
-      filter: drop-shadow(0 4px 8px rgba(8,0,6,.30)) drop-shadow(0 0 24px rgba(255,196,22,.18));
+      filter: drop-shadow(0 0 20px rgba(255,196,22,.16));
       transition: filter .28s ease, transform .28s cubic-bezier(.2,.8,.2,1);
     }
     .logo:hover, .logo:focus-visible {
-      filter: drop-shadow(0 4px 10px rgba(8,0,6,.36)) drop-shadow(0 0 44px rgba(255,196,22,.36));
+      filter: drop-shadow(0 0 36px rgba(255,196,22,.34));
     }
     #homeLogo {
       animation: paLogoFloat 6.4s ease-in-out infinite, paLogoGlow 5.2s ease-in-out infinite;
@@ -1666,8 +1666,8 @@
       50%       { transform: translateY(-6px) rotate(.4deg); }
     }
     @keyframes paLogoGlow {
-      0%, 100% { filter: drop-shadow(0 4px 8px rgba(8,0,6,.30)) drop-shadow(0 0 28px rgba(255,196,22,.18)); }
-      50%       { filter: drop-shadow(0 4px 10px rgba(8,0,6,.34)) drop-shadow(0 0 52px rgba(255,196,22,.44)) drop-shadow(0 0 80px rgba(242,70,97,.16)); }
+      0%, 100% { filter: drop-shadow(0 0 22px rgba(255,196,22,.16)); }
+      50%       { filter: drop-shadow(0 0 48px rgba(255,196,22,.42)) drop-shadow(0 0 72px rgba(242,70,97,.14)); }
     }
 
     /* ── BOUTONS HOME — JEWEL TILES ── */
@@ -1703,7 +1703,7 @@
     /* JOUER — ambre doré transparent */
     #playBtn {
       background: rgba(200,130,0,.13);
-      border: 1px solid rgba(255,210,80,.22);
+      border: 1px solid rgba(255,215,60,.65);
       box-shadow: none;
     }
     #playBtn:hover, #playBtn:focus-visible {
@@ -1718,7 +1718,7 @@
     /* DLC : BIRTHDAY — terracotta ardent transparent */
     #dlcBtn {
       background: rgba(195,70,40,.13);
-      border: 1px solid rgba(255,170,130,.26);
+      border: 1px solid rgba(255,155,100,.65);
       animation: dlcRing 2.2s cubic-bezier(0,.5,.5,1) infinite !important;
     }
     @keyframes dlcRing {
@@ -1750,7 +1750,7 @@
     /* SPEEDRUN — rubis sang transparent */
     #speedBtn {
       background: rgba(175,15,55,.13);
-      border: 1px solid rgba(255,130,155,.24);
+      border: 1px solid rgba(255,100,140,.65);
     }
     #speedBtn:hover, #speedBtn:focus-visible {
       background: rgba(175,15,55,.36);
@@ -1764,7 +1764,7 @@
     /* CHEAT CODE — améthyste transparent */
     #cheatBtn {
       background: rgba(110,20,170,.13);
-      border: 1px solid rgba(200,140,255,.22);
+      border: 1px solid rgba(190,120,255,.65);
     }
     #cheatBtn:hover, #cheatBtn:focus-visible {
       background: rgba(110,20,170,.36);
