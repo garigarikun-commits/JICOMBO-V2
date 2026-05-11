@@ -868,7 +868,7 @@
       width: 136px;
       height: 42px;
       padding: 0;
-      border: none;
+      border: 1px solid rgba(254,184,5,.42);
       border-radius: 12px;
       display: inline-flex;
       align-items: center;
@@ -880,12 +880,11 @@
       font-weight: 800;
       letter-spacing: .08em;
       text-transform: uppercase;
-      color: #3b1808;
-      background: linear-gradient(135deg, #fff0a8 0%, #ffd85a 26%, #ffbf2e 100%);
-      background-size: 145% 100%;
-      background-position: 0% 50%;
-      box-shadow: 0 10px 22px rgba(0,0,0,.14);
-      transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease, filter .16s ease, background-position .22s ease;
+      color: rgba(254,236,180,.55);
+      background: transparent;
+      box-shadow: none;
+      cursor: not-allowed;
+      transition: transform .16s ease, box-shadow .16s ease, filter .16s ease, background-position .22s ease, background-color .16s ease;
       will-change: transform, box-shadow;
     }
     .validate-btn::after {
@@ -898,7 +897,13 @@
       pointer-events: none;
     }
     .validate-btn:not(:disabled) {
+      background: linear-gradient(135deg, #fff0a8 0%, #ffd85a 26%, #ffbf2e 100%);
+      background-size: 145% 100%;
+      background-position: 0% 50%;
+      border: none;
+      color: #3b1808;
       box-shadow: 0 12px 24px rgba(254,184,5,.22), 0 8px 18px rgba(0,0,0,.16);
+      cursor: pointer;
     }
     .validate-btn:hover:not(:disabled), .validate-btn:focus-visible:not(:disabled) {
       transform: translateY(-2px) scale(1.02);
@@ -909,12 +914,6 @@
     .validate-btn:hover:not(:disabled)::after, .validate-btn:focus-visible:not(:disabled)::after,
     .validate-btn.wake:not(:disabled)::after {
       transform: translateX(130%);
-    }
-    .validate-btn:disabled {
-      opacity: .34;
-      cursor: not-allowed;
-      box-shadow: none;
-      transform: none;
     }
     .shake { animation: shake .36s ease; }
     @keyframes shake {
