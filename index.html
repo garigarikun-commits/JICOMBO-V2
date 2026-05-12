@@ -996,6 +996,8 @@
     .overlay.active { display: grid; animation: overlayFade .26s ease both; }
     .overlay.closing { display: grid; animation: overlayFadeOut .2s ease both; }
     .overlay.closing .modal { animation: modalClose .18s ease both; }
+    /* Used to restart CSS animations via class toggle (class change = new animation object) */
+    .anim-restart { animation: none !important; }
     .overlay[data-variant="danger"] {
       background:
         radial-gradient(circle at 50% 18%, rgba(255,79,109,.16), rgba(255,79,109,0) 38%),
@@ -5292,12 +5294,13 @@
         gameInner.classList.add("puzzle-enter");
         window.setTimeout(() => gameInner.classList.remove("puzzle-enter"), 420);
       }
-      // Restart logo float animation after each puzzle transition so Safari can't
-      // freeze it (happens when the GPU compositor layer is recycled by the modal).
+      // Restart logo float animation after each puzzle transition.
+      // Class toggle is the only reliable approach in WebKit (Chrome iOS):
+      // removeProperty("animation") leaves animation-name:none in longhands.
       if (gameLogo) {
-        gameLogo.style.animation = "none";
+        gameLogo.classList.add("anim-restart");
         void gameLogo.offsetWidth;
-        gameLogo.style.removeProperty("animation");
+        gameLogo.classList.remove("anim-restart");
       }
       state.current.clues.forEach((emoji, index) => {
         const span = document.createElement("span");
@@ -5367,15 +5370,17 @@
       modalAnswer.textContent = answer || "";
       modalScore.textContent = scoreText;
       continueBtn.textContent = buttonText;
-      // Force-restart .modal and .modal-emoji animations so they replay fresh every time.
-      // Doing this before adding "active" (while overlay is still display:none) avoids
-      // Safari bugs where fill-mode:both freezes the animation after the first run.
+      // Force-restart .modal and .modal-emoji animations via class toggle.
+      // removeProperty("animation") leaves animation-name:none in WebKit longhands,
+      // so we use a class change instead — a changed computed animation-name always
+      // creates brand-new animation objects, even in Chrome iOS (WebKit renderer).
       const modalEl = overlay.querySelector(".modal");
-      if (modalEl) {
-        modalEl.style.animation = "none";
-        void modalEl.offsetWidth;
-        modalEl.style.removeProperty("animation");
-      }
+      const emojiEl = overlay.querySelector(".modal-emoji");
+      if (modalEl) modalEl.classList.add("anim-restart");
+      if (emojiEl) emojiEl.classList.add("anim-restart");
+      if (modalEl) void modalEl.offsetWidth;   // single reflow commits both
+      if (modalEl) modalEl.classList.remove("anim-restart");
+      if (emojiEl) emojiEl.classList.remove("anim-restart");
       overlay.classList.add("active");
       continueBtn.focus({ preventScroll: true });
     }
