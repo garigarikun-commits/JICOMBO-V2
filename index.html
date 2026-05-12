@@ -1165,8 +1165,12 @@
       100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
     }
     @keyframes modalCardFloat {
-      0%, 100% { translate: 0 0; }
-      50% { translate: 0 -7px; }
+      0%, 100% { translate: 0 0px; rotate: -.3deg; }
+      50%       { translate: 0 -7px; rotate: .3deg; }
+    }
+    @keyframes modalFloat {
+      0%, 100% { transform: translateY(0) rotate(-2deg) scale(1); }
+      50%       { transform: translateY(-7px) rotate(2deg) scale(1.04); }
     }
     @keyframes modalClose {
       from { opacity: 1; transform: translateY(0) scale(1); }
@@ -1652,25 +1656,29 @@
 
     /* ── LOGO — flottement + glow pulsant ── */
     .logo {
-      filter: drop-shadow(0 0 20px rgba(255,196,22,.16));
+      filter: drop-shadow(0 0 18px rgba(255,196,22,.14));
       transition: filter .28s ease, transform .28s cubic-bezier(.2,.8,.2,1);
     }
     .logo:hover, .logo:focus-visible {
-      filter: drop-shadow(0 0 36px rgba(255,196,22,.34));
+      filter: drop-shadow(0 0 30px rgba(255,196,22,.28));
     }
     #homeLogo {
       animation: paLogoFloat 6.4s ease-in-out infinite, paLogoGlow 5.2s ease-in-out infinite;
     }
-    .game-logo, #cheatLogo {
-      animation: paLogoFloat 6.4s ease-in-out infinite;
+    .game-logo, #cheatLogo, #videoLogo {
+      animation: paLogoFloat 6.4s ease-in-out infinite, paLogoGlowSubtle 5.6s ease-in-out .8s infinite;
     }
     @keyframes paLogoFloat {
       0%, 100% { transform: translateY(0)  rotate(-.4deg); }
-      50%       { transform: translateY(-6px) rotate(.4deg); }
+      50%       { transform: translateY(-8px) rotate(.4deg); }
     }
     @keyframes paLogoGlow {
-      0%, 100% { filter: drop-shadow(0 0 22px rgba(255,196,22,.16)); }
-      50%       { filter: drop-shadow(0 0 48px rgba(255,196,22,.42)) drop-shadow(0 0 72px rgba(242,70,97,.14)); }
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(255,196,22,.14)); }
+      50%       { filter: drop-shadow(0 0 36px rgba(255,196,22,.30)) drop-shadow(0 0 52px rgba(242,70,97,.10)); }
+    }
+    @keyframes paLogoGlowSubtle {
+      0%, 100% { filter: drop-shadow(0 0 16px rgba(255,196,22,.12)); }
+      50%       { filter: drop-shadow(0 0 28px rgba(255,196,22,.22)) drop-shadow(0 0 40px rgba(242,70,97,.07)); }
     }
 
     /* ── BOUTONS HOME — JEWEL TILES ── */
@@ -1806,7 +1814,7 @@
 
     /* ── REDUCED MOTION ── */
     @media (prefers-reduced-motion: reduce) {
-      #homeLogo, .game-logo, #cheatLogo { animation: none; }
+      #homeLogo, .game-logo, #cheatLogo, #videoLogo { animation: none; }
       #viewport-bg                       { animation: none; }
       .heart.live                        { animation: none; }
     }
