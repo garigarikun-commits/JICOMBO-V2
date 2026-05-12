@@ -5831,6 +5831,12 @@
     });
     answerInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
+        if (canHover) {
+          // Desktop : laisser le form submit se déclencher normalement
+          // (ne pas preventDefault → le bouton Valider reçoit le submit)
+          return;
+        }
+        // Mobile : la touche Entrée ferme le clavier sans valider
         event.preventDefault();
         dismissAnswerKeyboard(true);
       }
