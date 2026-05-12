@@ -5587,7 +5587,19 @@
         card.classList.add("unlock");
         vibrate([20, 30, 50]);
         unlockSound();
-        setTimeout(() => showVideo("Assets/Videos/Oddworld.mp4"), 700);
+        setTimeout(() => showVideo("Assets/Videos/Oddworld2.mp4"), 700);
+        return;
+      }
+      if (code === "LEDOC") {
+        cheatStatus.textContent = "Viens voir le docteur !";
+        cheatStatus.classList.add("ok");
+        cheatInput.classList.add("ok");
+        card.classList.remove("unlock");
+        void card.offsetWidth;
+        card.classList.add("unlock");
+        vibrate([20, 30, 50]);
+        unlockSound();
+        setTimeout(() => showVideo("Assets/Videos/LEDOC.mp4"), 700);
         return;
       }
       cheatStatus.textContent = code.length ? "Code inconnu" : "Entre un code secret...";
