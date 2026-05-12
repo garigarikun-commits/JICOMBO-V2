@@ -995,6 +995,7 @@
     }
     .overlay.active { display: grid; animation: overlayFade .26s ease both; }
     .overlay.closing { display: grid; animation: overlayFadeOut .2s ease both; }
+    .overlay.closing .modal { animation: modalClose .18s ease both; }
     .overlay[data-variant="danger"] {
       background:
         radial-gradient(circle at 50% 18%, rgba(255,79,109,.16), rgba(255,79,109,0) 38%),
@@ -5291,6 +5292,13 @@
         gameInner.classList.add("puzzle-enter");
         window.setTimeout(() => gameInner.classList.remove("puzzle-enter"), 420);
       }
+      // Restart logo float animation after each puzzle transition so Safari can't
+      // freeze it (happens when the GPU compositor layer is recycled by the modal).
+      if (gameLogo) {
+        gameLogo.style.animation = "none";
+        void gameLogo.offsetWidth;
+        gameLogo.style.removeProperty("animation");
+      }
       state.current.clues.forEach((emoji, index) => {
         const span = document.createElement("span");
         span.className = "clue clue-enter";
@@ -5359,6 +5367,15 @@
       modalAnswer.textContent = answer || "";
       modalScore.textContent = scoreText;
       continueBtn.textContent = buttonText;
+      // Force-restart .modal and .modal-emoji animations so they replay fresh every time.
+      // Doing this before adding "active" (while overlay is still display:none) avoids
+      // Safari bugs where fill-mode:both freezes the animation after the first run.
+      const modalEl = overlay.querySelector(".modal");
+      if (modalEl) {
+        modalEl.style.animation = "none";
+        void modalEl.offsetWidth;
+        modalEl.style.removeProperty("animation");
+      }
       overlay.classList.add("active");
       continueBtn.focus({ preventScroll: true });
     }
@@ -5379,15 +5396,10 @@
         callback();
         return;
       }
-      const modal = targetOverlay.querySelector(".modal");
       targetOverlay.classList.remove("active");
       targetOverlay.classList.add("active", "closing");
-      if (modal) {
-        modal.style.animation = "modalClose .18s ease both";
-      }
       window.setTimeout(() => {
         targetOverlay.classList.remove("active", "closing");
-        if (modal) modal.style.animation = "";
         callback();
       }, 180);
     }
