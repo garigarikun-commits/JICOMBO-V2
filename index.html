@@ -1845,8 +1845,8 @@
     }
     /* OPENING state: box morphs immediately, no delay */
     .aide-bubble.open {
-      width: 182px;
-      height: 130px;
+      width: 174px;
+      height: 108px;
       border-radius: 16px;
       align-items: flex-start;
       cursor: default;
@@ -1883,10 +1883,10 @@
       pointer-events: auto;
     }
     .aide-menu-title {
-      font-size: .6rem;
+      font-size: .58rem;
       font-weight: 700;
-      color: rgba(254,252,206,.38);
-      letter-spacing: .08em;
+      color: rgba(254,252,206,.35);
+      letter-spacing: .1em;
       text-transform: uppercase;
       text-align: center;
       margin-bottom: 8px;
@@ -1895,23 +1895,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 36px;
-      padding: 9px 12px;
+      gap: 4px;
+      min-height: 28px;
+      padding: 7px 10px;
       border-radius: 9px;
       background: rgba(255,255,255,.07);
       border: 1px solid rgba(255,255,255,.1);
       color: rgba(254,252,206,.9);
-      font-size: .76rem;
-      font-weight: 400;
+      font-size: .72rem;
+      font-weight: 700;
+      line-height: 1;
       text-decoration: none;
       white-space: nowrap;
       text-align: center;
       transition: background .15s ease, border-color .15s ease;
     }
-    .aide-pill strong { font-weight: 700; }
+    .aide-name { font-weight: 900; }
     .aide-pill:hover  { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.18); }
     .aide-pill:active { background: rgba(255,255,255,.19); }
-    .aide-pill + .aide-pill { margin-top: 6px; }
+    .aide-pill + .aide-pill { margin-top: 5px; }
 
     /* ── REDUCED MOTION ── */
     @media (prefers-reduced-motion: reduce) {
@@ -5554,7 +5556,7 @@
       }
       aideWidget.hidden = false;
       if (aideBubble) aideBubble.classList.remove("open");
-      if (aideCall) { aideCall.innerHTML = `Appeler <strong>${contributor}</strong>`; aideCall.href = `tel:${phone}`; }
+      if (aideCall) { aideCall.innerHTML = `<span>Appeler</span><span class="aide-name">${contributor.toUpperCase()}</span>`; aideCall.href = `tel:${phone}`; }
       if (aideSms)  aideSms.href = `sms:${phone}`;
     }
 
