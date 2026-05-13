@@ -1,4 +1,4 @@
-const CACHE_NAME = "jicombo-v280";
+const CACHE_NAME = "jicombo-v281";
 const ASSETS = [
   "./",
   "./index.html",
