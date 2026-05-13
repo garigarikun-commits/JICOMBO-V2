@@ -1815,6 +1815,75 @@
       58% { transform: scale(.97); }
     }
 
+    /* ── AIDE DLC ── */
+    .aide-widget {
+      position: fixed;
+      bottom: calc(20px + env(safe-area-inset-bottom));
+      left:   calc(16px + env(safe-area-inset-left));
+      z-index: 6;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .aide-trigger {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      color: rgba(255,255,255,.42);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 5px 13px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: background .18s ease, color .18s ease, border-color .18s ease;
+    }
+    .aide-trigger:active {
+      background: rgba(255,255,255,.14);
+      color: rgba(255,255,255,.7);
+    }
+    .aide-menu {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0) 18%),
+        linear-gradient(155deg, rgba(82,18,52,.97), rgba(28,7,24,.97) 72%);
+      border: 1px solid rgba(254,184,5,.22);
+      border-radius: 18px;
+      padding: 14px 14px 10px;
+      min-width: 210px;
+      box-shadow: 0 14px 44px rgba(0,0,0,.48), inset 0 1px 0 rgba(255,255,255,.06);
+      transform-origin: bottom left;
+      animation: aideMenuPop .2s cubic-bezier(.18,.88,.24,1) both;
+    }
+    .aide-menu-title {
+      font-size: .74rem;
+      font-weight: 700;
+      color: rgba(254,252,206,.5);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 0 4px;
+      margin-bottom: 8px;
+    }
+    .aide-action {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 10px;
+      border-radius: 11px;
+      color: rgba(254,252,206,.92);
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .14s ease;
+    }
+    .aide-action:active { background: rgba(255,255,255,.1); }
+    .aide-action + .aide-action { margin-top: 2px; }
+    @keyframes aideMenuPop {
+      from { opacity: 0; transform: scale(.9) translateY(6px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
     /* ── REDUCED MOTION ── */
     @media (prefers-reduced-motion: reduce) {
       #homeLogo, .game-logo, #cheatLogo, #videoLogo { animation: none; }
@@ -1923,6 +1992,15 @@
       </form>
       <div id="hearts" class="hearts" aria-label="Vies"></div>
       <div id="message" class="message" aria-live="polite"></div>
+    </div>
+    <!-- Aide DLC : visible uniquement en mode Birthday DLC -->
+    <div id="aideWidget" class="aide-widget" hidden>
+      <div id="aideMenu" class="aide-menu" hidden aria-label="Menu d'aide">
+        <div class="aide-menu-title">Besoin d'aide ?</div>
+        <a id="aideCall" class="aide-action" href="#">📱 Appeler <span id="aideContributorName"></span></a>
+        <a id="aideSms"  class="aide-action" href="#">💬 Envoyer un SMS</a>
+      </div>
+      <button class="aide-trigger" id="aideTrigger" aria-label="Aide">Aide</button>
     </div>
   </main>
 
@@ -4581,6 +4659,17 @@
       isBirthdayDlc: false,
     };
 
+    const CONTRIBUTOR_CONTACTS = {
+      "Maman":      "+33620082994",
+      "Drigo":      "+33603688008",
+      "Shéshé":    "+33617715615",
+      "Sandra":     "+33606863100",
+      "Liam":       "+33606863100", // numéro de Sandra (il a 7 ans lol)
+      "Salma":      "+33787374973",
+      "Jean-Louis": "+33616665211",
+      "Manu":       "+33634522968",
+    };
+
     const BIRTHDAY_DLC_BLUEPRINT = [
       { key: "leparrain", contributor: "Maman" },
       { key: "oxmopuccino", contributor: "Maman" },
@@ -4703,6 +4792,12 @@
     const cheatLogo = $("cheatLogo");
     const videoLogo = $("videoLogo");
     const gameInner = $("gameInner");
+    const aideWidget = $("aideWidget");
+    const aideTrigger = $("aideTrigger");
+    const aideMenu = $("aideMenu");
+    const aideCall = $("aideCall");
+    const aideSms = $("aideSms");
+    const aideContributorName = $("aideContributorName");
     const launchSplash = $("launchSplash");
     if (skipLaunchSplashOnce && launchSplash) launchSplash.classList.add("hidden");
     const playBtn = $("playBtn");
@@ -5339,6 +5434,11 @@
       if (videoScreen) videoScreen.classList.toggle("active", target === "videoScreen");
       overlay.classList.remove("active");
       levelOverlay.classList.remove("active");
+      // Hide aide widget when leaving game
+      if (target !== "game" && aideWidget) {
+        aideWidget.hidden = true;
+        if (aideMenu) aideMenu.hidden = true;
+      }
       // Pause video when leaving the video screen
       if (target !== "videoScreen" && secretVideo) {
         secretVideo.pause();
@@ -5414,6 +5514,21 @@
       hint.append(firstLine, secondLine);
     }
 
+    function updateAideWidget() {
+      if (!aideWidget) return;
+      const contributor = state.isBirthdayDlc ? state.current?.contributor : null;
+      const phone = contributor ? CONTRIBUTOR_CONTACTS[contributor] : null;
+      if (!contributor || !phone) {
+        aideWidget.hidden = true;
+        if (aideMenu) aideMenu.hidden = true;
+        return;
+      }
+      aideWidget.hidden = false;
+      if (aideContributorName) aideContributorName.textContent = contributor;
+      if (aideCall) aideCall.href = `tel:${phone}`;
+      if (aideSms)  aideSms.href  = `sms:${phone}`;
+    }
+
     function renderPuzzle() {
       clearPendingUiTimers();
       state.current = state.deck[state.index];
@@ -5461,6 +5576,7 @@
       validateBtn.disabled = true;
       answerForm.classList.remove("ready");
       renderHearts(state.lives);
+      updateAideWidget();
       if (!window.matchMedia("(max-width: 640px)").matches && !isStandalonePwa) {
         setTimeout(() => answerInput.focus({ preventScroll: true }), 80);
       }
@@ -5865,6 +5981,15 @@
       pressFeedback(continueBtn);
       overlay.removeAttribute("data-variant");
       nextPuzzle();
+    });
+    if (aideTrigger) {
+      aideTrigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (aideMenu) aideMenu.hidden = !aideMenu.hidden;
+      });
+    }
+    document.addEventListener("click", () => {
+      if (aideMenu && !aideMenu.hidden) aideMenu.hidden = true;
     });
     levelContinueBtn.addEventListener("click", () => {
       uiGameSound("continue");
