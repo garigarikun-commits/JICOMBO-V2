@@ -1846,7 +1846,7 @@
     /* OPENING state: box morphs immediately, no delay */
     .aide-bubble.open {
       width: 172px;
-      height: 90px;
+      height: 96px;
       border-radius: 16px;
       align-items: flex-start;
       cursor: default;
@@ -1873,7 +1873,7 @@
     .aide-content {
       opacity: 0;
       transition: opacity .1s ease 0s;
-      padding: 9px 11px 11px;
+      padding: 9px 10px 9px;
       width: 100%;
       pointer-events: none;
     }
@@ -1890,22 +1890,23 @@
       text-transform: uppercase;
       margin-bottom: 4px;
     }
-    .aide-action {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      padding: 5px 6px;
+    .aide-pill {
+      display: block;
+      padding: 6px 10px;
       border-radius: 8px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
       color: rgba(254,252,206,.9);
-      font-size: .78rem;
+      font-size: .76rem;
       font-weight: 600;
       text-decoration: none;
       white-space: nowrap;
-      transition: background .14s ease;
+      text-align: left;
+      transition: background .15s ease, border-color .15s ease;
     }
-    .aide-action:active { background: rgba(255,255,255,.1); }
-    .aide-action + .aide-action { margin-top: 1px; }
-    .aide-name { font-weight: 800; }
+    .aide-pill:hover { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.18); }
+    .aide-pill:active { background: rgba(255,255,255,.19); }
+    .aide-pill + .aide-pill { margin-top: 4px; }
 
     /* ── REDUCED MOTION ── */
     @media (prefers-reduced-motion: reduce) {
@@ -2022,8 +2023,8 @@
         <span class="aide-q">?</span>
         <div class="aide-content">
           <div class="aide-menu-title">Besoin d'aide ?</div>
-          <a id="aideCall" class="aide-action" href="#">📱 Appeler&nbsp;<strong class="aide-name" id="aideContributorName"></strong></a>
-          <a id="aideSms"  class="aide-action" href="#">💬 Envoyer un SMS</a>
+          <a id="aideCall" class="aide-pill" href="#">Appeler</a>
+          <a id="aideSms"  class="aide-pill" href="#">Envoyer un SMS</a>
         </div>
       </div>
     </div>
@@ -4821,7 +4822,6 @@
     const aideBubble = $("aideBubble");
     const aideCall = $("aideCall");
     const aideSms = $("aideSms");
-    const aideContributorName = $("aideContributorName");
     const launchSplash = $("launchSplash");
     if (skipLaunchSplashOnce && launchSplash) launchSplash.classList.add("hidden");
     const playBtn = $("playBtn");
@@ -5549,9 +5549,8 @@
       }
       aideWidget.hidden = false;
       if (aideBubble) aideBubble.classList.remove("open");
-      if (aideContributorName) aideContributorName.textContent = contributor;
-      if (aideCall) aideCall.href = `tel:${phone}`;
-      if (aideSms)  aideSms.href  = `sms:${phone}`;
+      if (aideCall) { aideCall.textContent = `Appeler ${contributor}`; aideCall.href = `tel:${phone}`; }
+      if (aideSms)  aideSms.href = `sms:${phone}`;
     }
 
     function renderPuzzle() {
