@@ -5725,6 +5725,19 @@
         setTimeout(() => startGame(false, Math.max(0, start), run), 900);
         return;
       }
+      if (code === "KAFKAF") {
+        cheatStatus.textContent = "Mi-parcours DLC \u{1F382}";
+        cheatStatus.classList.add("ok");
+        cheatInput.classList.add("ok");
+        card.classList.remove("unlock");
+        void card.offsetWidth;
+        card.classList.add("unlock");
+        vibrate([30,35,45]);
+        unlockSound();
+        const dlcRun = birthdayDlcDeck();
+        setTimeout(() => startGame(false, 47, dlcRun, { isBirthdayDlc: true }), 900);
+        return;
+      }
       if (code === "LAJOUE") {
         cheatStatus.textContent = "Elle est là";
         cheatStatus.classList.add("ok");
