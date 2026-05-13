@@ -1845,8 +1845,8 @@
     }
     /* OPENING state: box morphs immediately, no delay */
     .aide-bubble.open {
-      width: 172px;
-      height: 96px;
+      width: 182px;
+      height: 130px;
       border-radius: 16px;
       align-items: flex-start;
       cursor: default;
@@ -1873,7 +1873,7 @@
     .aide-content {
       opacity: 0;
       transition: opacity .1s ease 0s;
-      padding: 9px 10px 9px;
+      padding: 12px;
       width: 100%;
       pointer-events: none;
     }
@@ -1883,30 +1883,35 @@
       pointer-events: auto;
     }
     .aide-menu-title {
-      font-size: .62rem;
+      font-size: .6rem;
       font-weight: 700;
-      color: rgba(254,252,206,.42);
-      letter-spacing: .06em;
+      color: rgba(254,252,206,.38);
+      letter-spacing: .08em;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      text-align: center;
+      margin-bottom: 8px;
     }
     .aide-pill {
-      display: block;
-      padding: 6px 10px;
-      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 9px 12px;
+      border-radius: 9px;
       background: rgba(255,255,255,.07);
       border: 1px solid rgba(255,255,255,.1);
       color: rgba(254,252,206,.9);
       font-size: .76rem;
-      font-weight: 600;
+      font-weight: 400;
       text-decoration: none;
       white-space: nowrap;
-      text-align: left;
+      text-align: center;
       transition: background .15s ease, border-color .15s ease;
     }
-    .aide-pill:hover { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.18); }
+    .aide-pill strong { font-weight: 700; }
+    .aide-pill:hover  { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.18); }
     .aide-pill:active { background: rgba(255,255,255,.19); }
-    .aide-pill + .aide-pill { margin-top: 4px; }
+    .aide-pill + .aide-pill { margin-top: 6px; }
 
     /* ── REDUCED MOTION ── */
     @media (prefers-reduced-motion: reduce) {
@@ -5549,7 +5554,7 @@
       }
       aideWidget.hidden = false;
       if (aideBubble) aideBubble.classList.remove("open");
-      if (aideCall) { aideCall.textContent = `Appeler ${contributor}`; aideCall.href = `tel:${phone}`; }
+      if (aideCall) { aideCall.innerHTML = `Appeler <strong>${contributor}</strong>`; aideCall.href = `tel:${phone}`; }
       if (aideSms)  aideSms.href = `sms:${phone}`;
     }
 
