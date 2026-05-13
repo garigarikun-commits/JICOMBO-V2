@@ -480,16 +480,18 @@
       box-shadow: inset 0 0 0 1px rgba(254,184,5,.05), 0 10px 18px rgba(0,0,0,.12);
     }
     .cheat-card {
-      width: min(100%, 348px);
-      padding: 26px 22px 24px;
+      width: min(88%, 312px);
+      padding: 20px 18px 18px;
       border-radius: 28px;
-      border: 1px solid rgba(254,184,5,.18);
-      background: linear-gradient(180deg, rgba(80,20,44,.78), rgba(30,7,26,.74));
-      box-shadow: 0 24px 56px rgba(0,0,0,.28);
+      border: 1px solid rgba(254,184,5,.22);
+      background: linear-gradient(180deg, rgba(80,20,44,.54), rgba(30,7,26,.50));
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 24px 56px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.06);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 15px;
+      gap: 11px;
     }
     #cheat.screen.cheat-enter #cheatLogo {
       animation: cheatLogoIn .34s cubic-bezier(.2,.9,.24,1) both;
@@ -520,12 +522,12 @@
     }
     .cheat-input {
       width: 100%;
-      padding: 16px;
+      padding: 12px 16px;
       border-radius: 16px;
       border: 2px solid rgba(254,184,5,.26);
       background: rgba(19,4,15,.72);
       color: #feb805;
-      font-size: 1.6rem;
+      font-size: 1.3rem;
       font-weight: 800;
       letter-spacing: .28em;
       text-align: center;
@@ -539,7 +541,7 @@
     .cheat-hint,.cheat-status {
       min-height: 1.18em;
       color: var(--muted);
-      font-size: .9rem;
+      font-size: .82rem;
       line-height: 1.2;
       margin: 0;
     }
@@ -553,17 +555,17 @@
       gap: 10px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: -8px;
+      margin-top: -4px;
     }
     .cheat-keypad {
       display: grid;
       grid-template-columns: repeat(10, minmax(0, 1fr));
       width: 100%;
-      gap: 6px;
+      gap: 5px;
     }
     .cheat-key {
       width: auto;
-      height: 38px;
+      height: 34px;
       border-radius: 9px;
       border: 1px solid rgba(254,184,5,.18);
       background: rgba(104,21,44,.18);
