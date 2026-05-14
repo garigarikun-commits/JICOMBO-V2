@@ -5226,11 +5226,6 @@
         return;
       }
       if (kind === "submit") {
-        try {
-          const a = new Audio("./Assets/Sons/BUTTON%20PRESS%20SUBMIT.mp3");
-          a.volume = 0.78;
-          a.play().catch(() => {});
-        } catch(_) {}
         return;
       }
       playToneSequence([392], "sine", 0.08, 56, 0.02);
