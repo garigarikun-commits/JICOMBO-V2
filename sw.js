@@ -1,4 +1,4 @@
-const CACHE_NAME = "jicombo-v295";
+const CACHE_NAME = "jicombo-v296";
 const ASSETS = [
   "./",
   "./index.html",
@@ -8,7 +8,7 @@ const ASSETS = [
   "./Assets/Jicombo-logo.png",
   "./Jicombo-icon.png",
   "./Assets/Sons/birthday.mp3",
-  "./Assets/Sons/INTRO/JICOMBO-THE-GAME-2.mp3",
+  "./Assets/Sons/INTRO/JICOMBO-THE-GAME-3.mp3",
   "./Assets/Sons/BUTTON%20PRESS%20SUBMIT.mp3"
 ];
 
