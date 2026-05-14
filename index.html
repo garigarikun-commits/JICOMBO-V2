@@ -5286,8 +5286,7 @@
       playToneSequence([160, 120], "sawtooth", 0.18, 80, 0.08);
     }
 
-    // Préchargement immédiat — le fichier commence à charger dès le démarrage du script
-    let introSoundPlayed = false;
+    // Easter egg : son intro au tap sur le logo home — préchargé dès le départ
     const introAudio = (() => {
       try {
         const a = new Audio("./Assets/Sons/INTRO/JICOMBO-THE-GAME-2.mp3");
@@ -5298,46 +5297,19 @@
       } catch(_) { return null; }
     })();
 
-    function playIntroSound() {
-      if (introSoundPlayed || !introAudio) return;
-      introSoundPlayed = true;
-      const attempt = () => {
-        introAudio.currentTime = 0;
-        introAudio.play().catch(() => { introSoundPlayed = false; });
-      };
-      // Joue immédiatement si chargé, sinon attend que ce soit prêt
-      if (introAudio.readyState >= 2) {
-        attempt();
-      } else {
-        introAudio.addEventListener("canplay", attempt, { once: true });
-      }
+    function playIntroEasterEgg() {
+      if (!introAudio) return;
+      introAudio.currentTime = 0;
+      introAudio.play().catch(() => {});
     }
 
     function hideLaunchSplash() {
       if (!launchSplash || launchSplash.classList.contains("hidden")) return;
       const delay = prefersReducedMotion ? 90 : 360;
-
-      // Le tap EST le geste utilisateur qui débloque l'audio sur iOS.
-      // Une fois prêt, la barre se remplit et le logo pulse → l'utilisateur tape → son + dismiss.
-      const dismiss = () => {
+      window.setTimeout(() => {
         launchSplash.classList.add("hidden");
         document.body.classList.remove("is-booting");
-        playIntroSound();
-      };
-      const markReady = () => {
-        launchSplash.classList.add("ready");
-        launchSplash.addEventListener("click", dismiss, { once: true });
-      };
-
-      const minDelay = new Promise(r => window.setTimeout(r, delay));
-      const audioReady = introAudio
-        ? new Promise(r => {
-            if (introAudio.readyState >= 2) { r(); return; }
-            introAudio.addEventListener("canplay", r, { once: true });
-            window.setTimeout(r, 2500); // fallback max
-          })
-        : Promise.resolve();
-      Promise.all([minDelay, audioReady]).then(markReady);
+      }, delay);
     }
 
     let activeScreen = "home";
@@ -6021,8 +5993,8 @@
 
     hideLaunchSplash();
 
-    homeLogo.addEventListener("click", refreshHome);
-    homeLogo.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") refreshHome(); });
+    homeLogo.addEventListener("click", () => { refreshHome(); playIntroEasterEgg(); });
+    homeLogo.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { refreshHome(); playIntroEasterEgg(); } });
     bindHomeAction(playBtn, "play", () => startGame(false));
     bindHomeAction(dlcBtn, "dlc", () => { spawnConfetti(); showBirthdayDlc(); });
     bindHomeAction(speedBtn, "speed", () => startGame(true));
