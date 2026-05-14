@@ -5226,6 +5226,11 @@
         return;
       }
       if (kind === "submit") {
+        try {
+          const a = new Audio("./Assets/Sons/BUTTON%20PRESS%20SUBMIT.mp3");
+          a.volume = 0.78;
+          a.play().catch(() => {});
+        } catch(_) {}
         return;
       }
       playToneSequence([392], "sine", 0.08, 56, 0.02);
@@ -5720,6 +5725,7 @@
       if (!state.current) return;
       const typed = answerInput.value.trim();
       if (!typed) return;
+      uiGameSound("submit");
       const isGood = isAcceptedAnswer(typed, state.current);
       const previousLives = state.lives;
       answerInput.classList.remove("correct", "wrong", "shake");
