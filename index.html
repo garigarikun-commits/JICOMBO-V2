@@ -1699,6 +1699,15 @@
     #homeLogo {
       animation: paLogoFloat 6.4s ease-in-out infinite, paLogoGlow 5.2s ease-in-out infinite;
     }
+    #homeLogo.logo-tap {
+      animation: logoTap .5s cubic-bezier(.18,.88,.24,1) both;
+    }
+    @keyframes logoTap {
+      0%   { transform: scale(1)    translateY(0); }
+      30%  { transform: scale(1.11) translateY(-7px); }
+      65%  { transform: scale(.97)  translateY(2px); }
+      100% { transform: scale(1)    translateY(0); }
+    }
     .game-logo, #cheatLogo, #videoLogo {
       animation: paLogoFloat 6.4s ease-in-out infinite, paLogoGlowSubtle 5.6s ease-in-out .8s infinite;
     }
@@ -5993,8 +6002,14 @@
 
     hideLaunchSplash();
 
-    homeLogo.addEventListener("click", () => { refreshHome(); playIntroEasterEgg(); });
-    homeLogo.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { refreshHome(); playIntroEasterEgg(); } });
+    homeLogo.addEventListener("click", () => {
+      playIntroEasterEgg();
+      homeLogo.classList.remove("logo-tap");
+      void homeLogo.offsetWidth; // reflow pour relancer l'anim
+      homeLogo.classList.add("logo-tap");
+      homeLogo.addEventListener("animationend", () => homeLogo.classList.remove("logo-tap"), { once: true });
+    });
+    homeLogo.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") refreshHome(); });
     bindHomeAction(playBtn, "play", () => startGame(false));
     bindHomeAction(dlcBtn, "dlc", () => { spawnConfetti(); showBirthdayDlc(); });
     bindHomeAction(speedBtn, "speed", () => startGame(true));
