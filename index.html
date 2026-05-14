@@ -1699,15 +1699,6 @@
     #homeLogo {
       animation: paLogoFloat 6.4s ease-in-out infinite, paLogoGlow 5.2s ease-in-out infinite;
     }
-    #homeLogo.logo-tap {
-      animation: logoTap .5s cubic-bezier(.18,.88,.24,1) both;
-    }
-    @keyframes logoTap {
-      0%   { transform: scale(1)    translateY(0); }
-      30%  { transform: scale(1.11) translateY(-7px); }
-      65%  { transform: scale(.97)  translateY(2px); }
-      100% { transform: scale(1)    translateY(0); }
-    }
     .game-logo, #cheatLogo, #videoLogo {
       animation: paLogoFloat 6.4s ease-in-out infinite, paLogoGlowSubtle 5.6s ease-in-out .8s infinite;
     }
@@ -6004,10 +5995,13 @@
 
     homeLogo.addEventListener("click", () => {
       playIntroEasterEgg();
-      homeLogo.classList.remove("logo-tap");
-      void homeLogo.offsetWidth; // reflow pour relancer l'anim
-      homeLogo.classList.add("logo-tap");
-      homeLogo.addEventListener("animationend", () => homeLogo.classList.remove("logo-tap"), { once: true });
+      // composite:'add' superpose le bounce AU-DESSUS du float/glow sans jamais les interrompre
+      homeLogo.animate([
+        { transform: "scale(1)" },
+        { transform: "scale(1.07)", offset: 0.28 },
+        { transform: "scale(0.97)", offset: 0.62 },
+        { transform: "scale(1)" }
+      ], { duration: 480, easing: "cubic-bezier(.18,.88,.24,1)", composite: "add" });
     });
     homeLogo.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") refreshHome(); });
     bindHomeAction(playBtn, "play", () => startGame(false));
