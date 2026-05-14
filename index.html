@@ -5261,12 +5261,31 @@
       playToneSequence([160, 120], "sawtooth", 0.18, 80, 0.08);
     }
 
+    let introSoundPlayed = false;
+    const INTRO_SRC = "./Assets/Sons/INTRO/JICOMBO%20THE%20GAME.wav";
+    function playIntroSound() {
+      if (introSoundPlayed || skipLaunchSplashOnce || prefersReducedMotion) return;
+      introSoundPlayed = true;
+      try {
+        const a = new Audio(INTRO_SRC);
+        a.volume = 0.82;
+        const p = a.play();
+        if (p) p.catch(() => {
+          introSoundPlayed = false;
+          const retry = () => { playIntroSound(); };
+          window.addEventListener("pointerdown", retry, { once: true, passive: true, capture: true });
+          window.addEventListener("touchstart",  retry, { once: true, passive: true, capture: true });
+        });
+      } catch(_) { introSoundPlayed = false; }
+    }
+
     function hideLaunchSplash() {
       if (!launchSplash || launchSplash.classList.contains("hidden")) return;
       const delay = prefersReducedMotion ? 90 : 360;
       window.setTimeout(() => {
         launchSplash.classList.add("hidden");
         document.body.classList.remove("is-booting");
+        playIntroSound();
       }, delay);
     }
 

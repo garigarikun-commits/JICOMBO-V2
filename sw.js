@@ -1,4 +1,4 @@
-const CACHE_NAME = "jicombo-v281";
+const CACHE_NAME = "jicombo-v282";
 const ASSETS = [
   "./",
   "./index.html",
@@ -7,7 +7,8 @@ const ASSETS = [
   "./manifest.webmanifest?v=100",
   "./Assets/Jicombo-logo.png",
   "./Jicombo-icon.png",
-  "./Assets/Sons/birthday.mp3"
+  "./Assets/Sons/birthday.mp3",
+  "./Assets/Sons/INTRO/JICOMBO%20THE%20GAME.wav"
 ];
 
 self.addEventListener("install", (event) => {
