@@ -5267,9 +5267,9 @@
     }
 
     let introSoundPlayed = false;
-    const INTRO_SRC = "./Assets/Sons/INTRO/JICOMBO%20THE%20GAME.wav";
+    const INTRO_SRC = "./Assets/Sons/INTRO/JICOMBO-THE-GAME.wav";
     function playIntroSound() {
-      if (introSoundPlayed || skipLaunchSplashOnce || prefersReducedMotion) return;
+      if (introSoundPlayed || prefersReducedMotion) return;
       introSoundPlayed = true;
       try {
         const a = new Audio(INTRO_SRC);
