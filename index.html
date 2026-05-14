@@ -5269,19 +5269,13 @@
     let introSoundPlayed = false;
     const INTRO_SRC = "./Assets/Sons/INTRO/JICOMBO-THE-GAME.wav";
     function playIntroSound() {
-      if (introSoundPlayed || prefersReducedMotion) return;
+      if (introSoundPlayed) return;
       introSoundPlayed = true;
       try {
         const a = new Audio(INTRO_SRC);
-        a.volume = 0.82;
-        const p = a.play();
-        if (p) p.catch(() => {
-          introSoundPlayed = false;
-          const retry = () => { playIntroSound(); };
-          window.addEventListener("pointerdown", retry, { once: true, passive: true, capture: true });
-          window.addEventListener("touchstart",  retry, { once: true, passive: true, capture: true });
-        });
-      } catch(_) { introSoundPlayed = false; }
+        a.volume = 0.5;
+        a.play().catch(() => {});
+      } catch(_) {}
     }
 
     function hideLaunchSplash() {
