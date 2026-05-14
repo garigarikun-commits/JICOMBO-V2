@@ -5291,11 +5291,22 @@
     function hideLaunchSplash() {
       if (!launchSplash || launchSplash.classList.contains("hidden")) return;
       const delay = prefersReducedMotion ? 90 : 360;
-      window.setTimeout(() => {
+      const dismiss = () => {
         launchSplash.classList.add("hidden");
         document.body.classList.remove("is-booting");
         playIntroSound();
-      }, delay);
+      };
+      // Attendre que le délai minimal ET l'audio soient prêts
+      const minDelay = new Promise(r => window.setTimeout(r, delay));
+      const audioReady = introAudio
+        ? new Promise(r => {
+            if (introAudio.readyState >= 2) { r(); return; }
+            introAudio.addEventListener("canplay", r, { once: true });
+            // Fallback : on n'attend pas indéfiniment
+            window.setTimeout(r, 2000);
+          })
+        : Promise.resolve();
+      Promise.all([minDelay, audioReady]).then(dismiss);
     }
 
     let activeScreen = "home";
